@@ -31,3 +31,20 @@ body {
     text-wrap: balance;
   }
 }
+
+/* globals.css */
+nav a {
+  color: #e2d9d2; /* Adjust based on your color palette */
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+  background-color: #e2d9d2; /* Adjust based on your color palette */
+  border-radius: 5px;
+}
+
+nav a.active {
+  border-bottom: 2px solid #e2d9d2; /* Active link indicator */
+}
