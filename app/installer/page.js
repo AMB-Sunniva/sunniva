@@ -1,8 +1,8 @@
-export default function installer() {
+export default function Installer() {
   return (
     <div>
-      <h1>Installer</h1>
-      <p>This is the installer page.</p>
+      <h1>Installers</h1>
+      <p>Information for installers.</p>
     </div>
-  )
+  );
 }

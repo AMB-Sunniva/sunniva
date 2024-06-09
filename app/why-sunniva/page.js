@@ -1,8 +1,8 @@
-export default function WhySunniva() {
+export default function WhySunnivaPage() {
   return (
     <div>
       <h1>Why Sunniva</h1>
-      <p>This is the why sunniva page.</p>
+      <p>Reasons to choose Sunniva.</p>
     </div>
-  )
+  );
 }
