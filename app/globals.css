@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -17,13 +18,9 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 @layer utilities {
@@ -32,19 +29,11 @@ body {
   }
 }
 
-/* globals.css */
-nav a {
-  color: #e2d9d2; /* Adjust based on your color palette */
+a {
   text-decoration: none;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
+  color: inherit;
 }
 
-nav a:hover {
-  background-color: #e2d9d2; /* Adjust based on your color palette */
-  border-radius: 5px;
-}
-
-nav a.active {
-  border-bottom: 2px solid #e2d9d2; /* Active link indicator */
+* {
+  box-sizing: border-box;
 }
