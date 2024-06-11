@@ -1,0 +1,34 @@
+.footer {
+    background-color: #474949;
+    color: white;
+    padding: 2rem 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .logo img {
+    height: 40px; /* Adjust the height of the logo once you get it */
+  }
+  
+  .links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  .links a:first-child {
+    margin-left: 0;
+  }
+  
+  .copyright {
+    text-align: center;
+    padding: 12px;
+  }
