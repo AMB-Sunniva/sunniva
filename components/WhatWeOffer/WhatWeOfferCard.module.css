@@ -1,0 +1,65 @@
+.card {
+    position: relative;
+    margin: 16px;
+    width: 100%;
+    max-width: 1050px;
+    height: 624px;
+    background-color: #F0F0F0;
+  }
+  
+  .cardImage {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  .cardContent {
+    padding: 16px;
+    color: #474949;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-25%, -50%);
+  }
+  
+  .cardTitle {
+    font-size: 1.5em;
+    padding-top: 8px;
+  }
+  
+  .cardDescription {
+    margin: 8px 0 0;
+    color: #555;
+  }
+  
+  .cardButton {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 32px 0;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    background-color: white;
+    border: 1px solid #253760;
+    color: #253760
+  }
+  
+  .cardButton:hover {
+    background-color: #253760;
+    border: 1px solid #253760;
+    color: #fff;
+  }
+
+
+  @media (max-width: 1200px) {
+    .card {
+      max-width: 80%;
+    }
+    .cardContent {
+      max-width: 100%;
+    }
+  }

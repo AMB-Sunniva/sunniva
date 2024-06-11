@@ -1,0 +1,56 @@
+.diySection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.diySection p {
+    font-size: 1.2em;
+    width: 35vw;
+    text-align: center;
+    padding-bottom: 1.5em;
+    font-weight:lighter;
+}
+
+.diySection ul {
+    padding-bottom: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #474949;
+}
+
+.container {
+    background-color: #F0F0F0;
+}
+
+.title {
+    text-align: center;
+    padding: 6rem 0 2rem;
+    background-color: white;
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    color: #474949;
+    letter-spacing: 2px;
+}
+
+.diyButton {
+    background-color: #253760;
+    color: #fff;
+    border: 1px solid #253760;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 32px;
+    font-weight: lighter;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+  }
+  
+  .diyButton:hover {
+    background-color: white;
+    border: 1px solid #253760;
+    color: #253760
+  }
