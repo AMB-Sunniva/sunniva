@@ -1,6 +1,7 @@
 import styles from './page.module.css'
 import AddOnGallery from "@/components/AddOn/AddOnGallery"
 import WhatWeOfferGallery from '@/components/WhatWeOffer/WhatWeOfferGallery'
+import Link from 'next/link'
 
 export default function WhatWeOffer() {
   return (
@@ -23,7 +24,7 @@ export default function WhatWeOffer() {
           <li>Smart Electrical Panels</li>
         </ul>
         <p>Visit our online shop today to explore our exceptional range of products and make your purchase, bringing innovation, sustainability, and style to your doorstep.</p>
-        <button className={styles.diyButton}>SHOP NOW</button>
+        <Link className={styles.diyButton} href="/shop">SHOP NOW</Link>
       </div>
       <div className={styles.container}>
         <div className={styles.title}>
