@@ -8,14 +8,14 @@ const Footer = () => {
           <img src="/logo.png" alt="Sunniva" />
         </div>
         <div className={styles.links}>
-          <a href="/what-we-offer">What We Offer</a>
-          <a href="/why-sunniva">Why Sunniva</a>
-          <a href="/installer">Installers</a>
-          <a href="/shop">Shop</a>
-          <a href="/contact-us">Contact Us</a>
+          <a href="/what-we-offer">WHAT WE OFFER</a>
+          <a href="/why-sunniva">WHY SUNNIVA</a>
+          <a href="/installer">INSTALLERS</a>
+          <a href="/shop">SHOP</a>
+          <a href="/contact-us">CONTACT US</a>
         </div>
       </div>
-      <p className={styles.copyright}>© 2023 My Site</p>
+      <p className={styles.copyright}>© 2023 SUNNIVA</p>
     </footer>
   );
 };

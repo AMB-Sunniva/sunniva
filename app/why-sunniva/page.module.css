@@ -1,0 +1,67 @@
+.whyDescription {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.whyDescription h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #474949;
+    letter-spacing: 2px;
+}
+
+.whyDescription p {
+    font-size: 1rem;
+    color: #474949;
+    margin: 0 200px;
+    padding-bottom: 0.9rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4rem 8rem;
+}
+
+.box {
+    flex: 1 0 50%;
+    margin: 20px;
+    box-sizing: border-box;
+    border: 2px solid #E2D9D2;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.content h2 {
+    margin: 0;
+    padding: 5rem;
+    color: #474949;
+}
+
+.content p {
+    margin: 0;
+    padding: 7rem;
+    color: #474949;
+}
+
+
+
+@media screen and (max-width: 1100px) {
+    .whyDescription p {
+        margin: 0 30px;
+    }
+
+    .box {
+        flex: 1 0 100%;
+        }
+    .content h2 {
+        padding: 1rem;
+    }
+    .content p {
+        padding: 1rem;
+    }
+}

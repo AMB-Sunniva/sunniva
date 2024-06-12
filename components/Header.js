@@ -5,15 +5,15 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <h1 className={styles.logo}>Sunniva</h1>
+        <h1 className={styles.logo}>SUNNIVA</h1>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
-            <li className={styles.navItem}><Link href="/">Home</Link></li>
-            <li className={styles.navItem}><Link href="/what-we-offer">What We Offer</Link></li>
-            <li className={styles.navItem}><Link href="/why-sunniva">Why Sunniva</Link></li>
-            <li className={styles.navItem}><Link href="/installer">Installers</Link></li>
-            <li className={styles.navItem}><Link href="/shop">Shop</Link></li>
-            <li className={styles.navItem}><Link href="/contact-us">Contact Us</Link></li>
+            <li className={styles.navItem}><Link href="/">HOME</Link></li>
+            <li className={styles.navItem}><Link href="/what-we-offer">WHAT WE OFFER</Link></li>
+            <li className={styles.navItem}><Link href="/why-sunniva">WHY SUNNIVA</Link></li>
+            <li className={styles.navItem}><Link href="/installer">INSTALLERS</Link></li>
+            <li className={styles.navItem}><Link href="/shop">SHOP</Link></li>
+            <li className={styles.navItem}><Link href="/contact-us">CONTACT US</Link></li>
           </ul>
         </nav>
       </div>
