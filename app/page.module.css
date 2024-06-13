@@ -1,0 +1,98 @@
+.homePage {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 6rem 0;
+}
+
+.logo {
+    margin: 30px;
+}
+
+.title {
+    text-align: center;
+    background-color: white;
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    color: #474949;
+    letter-spacing: 2px;
+    font-weight: lighter;
+}
+
+.aboutSection {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.aboutSection p {
+    font-size: 1.2em;
+    width: 35vw;
+    padding-bottom: 1.5em;
+    font-weight:lighter;
+}
+
+.aboutButton {
+    background-color: #253760;
+    color: #fff;
+    border: 1px solid #253760;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 32px 0;
+    font-weight: lighter;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+  }
+  
+  .aboutButton:hover {
+    background-color: white;
+    border: 1px solid #253760;
+    color: #253760
+  }
+
+  .overview {
+    background-color: #f0f0f0;
+    padding: 48px 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 96px;
+    min-height: 500px;
+  }
+
+  .overviewContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+  }
+
+  .overviewContent h2 {
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .overviewContent p {
+    padding: 16px 0;
+    text-align: center;
+    font-weight: lighter;
+  }
+
+.benefits {
+    font-size: 2rem;
+    color: #474949;
+    letter-spacing: 2px;
+    font-weight: lighter;
+}
+
+
+
+  @media (max-width: 1400px) {
+    .overviewContent {
+        font-size: 1em;
+      }
+  }

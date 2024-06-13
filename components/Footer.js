@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import { BiLogoFacebook, BiLogoInstagram, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi";
 
 const Footer = () => {
   return (
@@ -13,6 +14,20 @@ const Footer = () => {
           <a href="/installer">INSTALLERS</a>
           <a href="/shop">SHOP</a>
           <a href="/contact-us">CONTACT US</a>
+        </div>
+        <div className={styles.socialMedia}>
+          <a href="https://www.facebook.com/people/Sunniva-Solar/100083357708143/" target="_blank" rel="noreferrer">
+            <BiLogoFacebook size="1.5em" />
+          </a>
+          <a href="https://www.instagram.com/sunnivasolar/" target="_blank" rel="noreferrer">
+            <BiLogoInstagram size="1.5em" />
+          </a>
+          <a href="https://www.youtube.com/@SunnivaSolar" target="_blank" rel="noreferrer">
+            <BiLogoYoutube size="1.5em" />
+          </a>
+          <a href="https://www.tiktok.com/@sunnivasolar" target="_blank" rel="noreferrer">
+            <BiLogoTiktok size="1.5em" />
+          </a>
         </div>
       </div>
       <p className={styles.copyright}>© 2023 SUNNIVA</p>
