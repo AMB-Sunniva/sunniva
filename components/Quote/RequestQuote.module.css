@@ -1,0 +1,90 @@
+.signUpSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 0;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    margin: 32px;
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    color: #474949;
+    letter-spacing: 2px;
+    font-weight: lighter;
+    padding: 20px 20px 0 20px;
+}
+
+ .formStyle {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #474949;
+    width: 40vw;
+  }
+
+ .formGroupStyle {
+    margin-bottom: 15px;
+  }
+  
+ .inputStyle {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #F0F0F0;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+  }
+  
+  .inputStyle::placeholder  {
+    color: black;
+    font-weight: lighter;
+  }
+
+  .button {
+    background-color: #253760;
+    color: #fff;
+    border: 1px solid #253760;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    width: 150px;
+  }
+  
+  .button:hover {
+    background-color: white;
+    border: 1px solid #253760;
+    color: #253760;
+  }
+
+  .contactSection {
+    width: 25%;
+    border-left: 3px solid #E2D9D2;
+  }
+
+  .contactSection div{
+    font-size: 1.2em;
+    padding: 16px 32px;
+    color: #474949;
+  }
+
+  .contactContent {
+    padding: 16px 32px;
+    color: #474949;
+  }
+  
+  .contactContent h2 {
+    font-size: 1.5em;
+    padding-top: 8px;
+  }
+  
+  .contactContent p {
+    padding: 8px 0 24px;
+    color: #474949;
+    font-size: 1.2em;
+  }

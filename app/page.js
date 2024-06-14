@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
 import { PiLightbulbFilamentThin, PiStackSimpleThin, PiMoneyThin } from "react-icons/pi";
+import Button from '@/components/Button';
 
 export default function HomePage() {
   return (
@@ -18,7 +19,9 @@ export default function HomePage() {
           </div>
           <div className={styles.aboutSection}>
             <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
-            <Link className={styles.aboutButton} href="/shop">SHOP NOW</Link>
+            <Link href="/shop">
+                <Button type='bigPrimary'>SHOP NOW</Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -56,7 +59,9 @@ export default function HomePage() {
           </div>
           <div className={styles.aboutSection}>
             <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
-            <Link className={styles.aboutButton} href="/why-sunniva">LEARN MORE</Link>
+            <Link href="/why-sunniva">
+                <Button type='bigPrimary'>LEARN MORE</Button>
+            </Link>
           </div>
         </div>
       </div>

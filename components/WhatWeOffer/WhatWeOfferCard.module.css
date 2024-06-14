@@ -38,24 +38,6 @@
     margin: 8px 0 0;
     color: #555;
   }
-  
-  .cardButton {
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 32px 0;
-    font-weight: lighter;
-    letter-spacing: 2px;
-    background-color: white;
-    border: 1px solid #253760;
-    color: #253760
-  }
-  
-  .cardButton:hover {
-    background-color: #253760;
-    border: 1px solid #253760;
-    color: #fff;
-  }
 
 
   @media (max-width: 1200px) {

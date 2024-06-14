@@ -1,4 +1,6 @@
 import styles from './WhatWeOfferCard.module.css';
+import Link from 'next/link';
+import Button from '../Button';
 
 const WhatWeOfferCard = ({ title, description, imageUrl }) => {
   return (
@@ -9,7 +11,9 @@ const WhatWeOfferCard = ({ title, description, imageUrl }) => {
           <h2 className={styles.cardTitle}>{title}</h2>
           <hr style={{width:'5%', borderColor: '#333', margin: '15px 0'}} />
           <p className={styles.cardDescription}>{description}</p>
-          <button className={styles.cardButton}>REQUEST A QUOTE</button>
+          <Link href="/contact-us">
+            <Button type='secondary'>REQUEST A QUOTE</Button>
+          </Link>
         </div>
       </div>
     </div>
