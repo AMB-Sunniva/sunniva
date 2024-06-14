@@ -11,7 +11,7 @@
 }
 
 .whyDescription p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #474949;
     margin: 0 200px;
     padding-bottom: 0.9rem;
@@ -27,8 +27,7 @@
     flex: 1 0 50%;
     margin: 20px;
     box-sizing: border-box;
-    border: 2px solid #E2D9D2;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border: 3px solid #E2D9D2;
 }
 
 .content {

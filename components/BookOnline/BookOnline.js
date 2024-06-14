@@ -1,7 +1,7 @@
 "use client";
 import Button from '../Button';
 
-const AddOnCard = ({ title, description, imageUrl, href }) => {
+const BookOnline = ({ title, description, imageUrl, href }) => {
   const onClick = () => {
     window.open(href, '_blank', 'noopener noreferrer')
   }
@@ -13,10 +13,10 @@ const AddOnCard = ({ title, description, imageUrl, href }) => {
         <h2 className="pt-2 text-2xl">{title}</h2>
         <hr style={{width:'5%', borderColor: '#333', margin: '15px auto'}} />
         <p className='mt-2'>{description}</p>
-        <Button type="primary" onClick={onClick}>LEARN MORE</Button>
+        <Button type="primary" onClick={onClick}>BOOK NOW</Button>
       </div>
     </div>
   );
 };
 
-export default AddOnCard;
+export default BookOnline;

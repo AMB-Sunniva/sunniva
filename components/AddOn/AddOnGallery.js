@@ -1,5 +1,4 @@
 import AddOnCard from './AddOnCard';
-import styles from './AddOnGallery.module.css';
 
 const projects = [
   {
@@ -30,7 +29,7 @@ const projects = [
 
 const AddOnGallery = () => {
   return (
-    <div className={styles.gallery}>
+    <div className="p-4 flex flex-wrap justify-center mx-auto" style={{maxWidth: '1300px'}}>
       {projects.map((project, index) => (
         <AddOnCard
           key={index}

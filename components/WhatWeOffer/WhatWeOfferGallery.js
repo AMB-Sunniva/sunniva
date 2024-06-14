@@ -1,5 +1,4 @@
 import WhatWeOfferCard from './WhatWeOfferCard';
-import styles from './WhatWeOfferGallery.module.css';
 
 const projects = [
   {
@@ -21,7 +20,7 @@ const projects = [
 
 const WhatWeOfferGallery = () => {
   return (
-    <div className={styles.gallery}>
+    <div className='flex flex-col items-center'>
       {projects.map((project, index) => (
         <WhatWeOfferCard
           key={index}
