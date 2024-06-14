@@ -27,6 +27,14 @@
   .links a:first-child {
     margin-left: 0;
   }
+
+  .socialMedia {
+    display: flex;
+  }
+
+  .socialMedia a {
+    padding: 20px;
+  }
   
   .copyright {
     text-align: center;
