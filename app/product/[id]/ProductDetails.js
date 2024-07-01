@@ -1,6 +1,11 @@
 "use client";
+import Button from "@/components/Button";
+import { useCart } from "@/app/context/CartContext";
+
 
 const ProductDetails = ({ product }) => {
+  const {addToCart} = useCart()
+
   return (
     <div className="container mx-auto py-8">
     <div className="flex flex-col md:flex-row items-center justify-center">
@@ -9,6 +14,9 @@ const ProductDetails = ({ product }) => {
         <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
         <p className="text-gray-700 mb-4">${product.price}</p>
         <p className="text-gray-700">{product.description}</p>
+        <Button type="primary" onClick={() => addToCart(product)}>
+        Add to Cart
+      </Button>
       </div>
     </div>
   </div>
