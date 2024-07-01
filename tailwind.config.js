@@ -23,6 +23,7 @@ module.exports = {
       },
       width: {
         '600px': '600px',
+        '38rem': '38rem'
       },
     },
   },
