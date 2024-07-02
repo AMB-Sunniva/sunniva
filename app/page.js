@@ -3,6 +3,7 @@ import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
 import { PiLightbulbFilamentThin, PiStackSimpleThin, PiMoneyThin } from "react-icons/pi";
 import Button from '@/components/Button';
+import Image from 'next/image';
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
       <LandingPage />
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <img src="/logo.png" alt="Sunniva" />
+            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} />
         </div>
         <div>
           <div className={styles.title}>
@@ -44,7 +45,7 @@ export default function HomePage() {
       </div>
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <img src='https://via.placeholder.com/150' alt="Sunniva" />
+            <Image src='/images/picFour.jpeg' alt='Sunniva' width={700} height={100}/>
         </div>
         <div>
           <div className={styles.benefits}>

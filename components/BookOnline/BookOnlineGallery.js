@@ -4,13 +4,13 @@ const projects = [
   {
     title: 'VIRTUAL CONSULTATION',
     description: '30 min',
-    imageUrl: 'https://via.placeholder.com/530x353',
+    imageUrl: '/images/picSeven.jpeg',
     href: ''
   },
   {
     title: 'FINANCING CONSULTATION',
     description: '30 min',
-    imageUrl: 'https://via.placeholder.com/530x353',
+    imageUrl: '/images/picThree.jpeg',
     href: ''
   },
 ];

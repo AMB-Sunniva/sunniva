@@ -1,6 +1,7 @@
 'use client';
 import styles from './InstallerSignUp.module.css'
 import { useState } from 'react';
+import Image from 'next/image';
 
 const InstallerSignUp = () => {
     const [formData, setFormData] = useState({
@@ -130,8 +131,8 @@ const InstallerSignUp = () => {
                     <button type='submit' className={styles.button}>SUBMIT</button>
                 </form>
             </div>
-            <div>
-                <img src='https://via.placeholder.com/150' alt='Installer' className={styles.cardImage} />
+            <div className='m-2'>
+              <Image src='/images/picNine.jpeg' alt='Installer' width={600} height={100} />
             </div>
         </div>
     );

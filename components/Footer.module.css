@@ -1,7 +1,7 @@
 .footer {
     background-color: #474949;
     color: white;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
   
   .container {
@@ -12,10 +12,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
-  }
-  
-  .logo img {
-    height: 40px; /* Adjust the height of the logo once you get it */
   }
   
   .links a {
