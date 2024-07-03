@@ -3,6 +3,7 @@ import "./globals.css";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import Cart from "@/components/Cart";
 
@@ -21,12 +22,14 @@ export default function Layout({ children }) {
         <title>Sunniva</title>
       </head>
       <body>
-        <CartProvider>
-          <Header openCart={openCart} />
-          <main>{children}</main>
-          <Cart isOpen={isCartOpen} closeCart={closeCart} />
-          <Footer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Header openCart={openCart} />
+            <main>{children}</main>
+            <Cart isOpen={isCartOpen} closeCart={closeCart} />
+            <Footer />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -17,7 +17,13 @@ export function AuthProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-  const logout = () => signOut(auth);
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
 
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
