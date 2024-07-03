@@ -101,6 +101,7 @@ export default function Header({ openCart }) {
           <Link href="/why-sunniva">WHY SUNNIVA</Link>
           <Link href="/installer">INSTALLERS</Link>
           <Link href="/shop">SHOP</Link>
+          <Link href="/admin/shop">Admin-Shop</Link>
           <Link href="/contact-us">CONTACT USs</Link>
         </div>
       </div>
