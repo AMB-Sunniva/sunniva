@@ -17,6 +17,7 @@ module.exports = {
         "custom-gray": "#474949",
         "custom-tan": "#E2D9D2",
         "custom-light-gray": "#F0F0F0",
+        "bg-gray": "rgba(51, 51, 51, 0.7)",
       },
       letterSpacing: {
         '2px': '2px',
@@ -24,6 +25,9 @@ module.exports = {
       width: {
         '600px': '600px',
         '38rem': '38rem'
+      },
+      height: {
+        '600px': '600px',
       },
     },
   },

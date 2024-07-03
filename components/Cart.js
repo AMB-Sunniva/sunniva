@@ -5,7 +5,7 @@ const Cart = ({ isOpen, closeCart }) => {
   const { cart, removeFromCart, increaseQuantity, decreaseQuantity, getTotalPrice } = useCart();
 
   return (
-    <div className={`fixed right-0 top-0 h-full w-38rem bg-white shadow-lg z-10 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}>
+    <div className={`fixed right-0 top-0 h-full w-38rem bg-white shadow-lg z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}>
       <div className="flex justify-between items-center p-4 border-b">
         <h2 className="text-xl font-semibold">Your Cart</h2>
         <button onClick={closeCart} className="text-gray-600 hover:text-gray-800 focus:outline-none">

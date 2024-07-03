@@ -1,13 +1,12 @@
 import styles from './Footer.module.css';
 import { BiLogoFacebook, BiLogoInstagram, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi";
+import Image from 'next/image';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <img src="/logo.png" alt="Sunniva" />
-        </div>
+        <Image src='/images/whiteLogo.png' alt='Sunniva' width={200} height={100} />
         <div className={styles.links}>
           <a href="/what-we-offer">WHAT WE OFFER</a>
           <a href="/why-sunniva">WHY SUNNIVA</a>

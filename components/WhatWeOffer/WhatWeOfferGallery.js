@@ -4,17 +4,17 @@ const projects = [
   {
     title: 'SOLAR + SHADE',
     description: 'Our custom-designed Solar + Shade systems redefine outdoor living by combining architectural ingenuity with renewable energy. These meticulously crafted structures not only offer an inviting shaded space but also seamlessly incorporate solar panels, transforming sunlight into power. With a range of sizes available, our Solar + Shade systems provide a tailored solution that harmonizes eco-friendliness and personalized aesthetics, making your outdoor retreat both stylish and sustainable.',
-    imageUrl: 'https://via.placeholder.com/150'
+    imageUrl: '/images/picEleven.jpeg'
   },
   {
     title: 'JUST SOLAR',
     description: 'Illuminate your existing shade structures with renewable energy by integrating solar solutions that not only enhance their functionality but also reduce your carbon footprint. Experience the synergy of shade and solar in a seamless upgrade that embraces sustainability and innovation.',
-    imageUrl: 'https://via.placeholder.com/150'
+    imageUrl: '/images/picOne.jpeg'
   },
   {
     title: 'JUST SHADE',
     description: 'Crafting personalized elegance, we provide homeowners with bespoke wood shade structures that seamlessly blend into your landscape, offering both respite from the sun and a tailored touch of beauty to your outdoor haven. Elevate your property with our custom creations, where form meets function in perfect harmony.',
-    imageUrl: 'https://via.placeholder.com/150'
+    imageUrl: '/images/picEight.jpeg'
   },
 ];
 

@@ -1,5 +1,6 @@
 import styles from './page.module.css'
 import InstallerSignUp from '@/components/Installer/InstallerSignUp';
+import Image from 'next/image';
 
 export default function Installer() {
   return (
@@ -13,7 +14,7 @@ export default function Installer() {
       </div>
       <div className={styles.howItWorks}>
         <div className={styles.card}>
-          <img src='https://via.placeholder.com/150' alt='Installer' className={styles.cardImage} />
+          <Image src='/images/picSix.jpeg' alt='Installer' width={200} height={100} className={styles.cardImage}/>
           <div className={styles.cardContent}>
             <div className={styles.benefits}>
               <h2 className={styles.benefitsTitle}>BENEFITS</h2>

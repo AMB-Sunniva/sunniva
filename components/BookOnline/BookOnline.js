@@ -1,5 +1,6 @@
 "use client";
 import Button from '../Button';
+import Image from 'next/image';
 
 const BookOnline = ({ title, description, imageUrl, href }) => {
   const onClick = () => {
@@ -7,8 +8,8 @@ const BookOnline = ({ title, description, imageUrl, href }) => {
   }
 
   return (
-    <div className='m-4 bg-white text-center w-600px'>
-      <img src={imageUrl} alt={title} className='w-full h-auto' />
+    <div className='m-4 bg-white text-center w-600px h-600px'>
+      <Image src={imageUrl} alt={title} className='h-3/5' width={600} height={360}/>
       <div className="text-custom-gray p-4">
         <h2 className="pt-2 text-2xl">{title}</h2>
         <hr style={{width:'5%', borderColor: '#333', margin: '15px auto'}} />
