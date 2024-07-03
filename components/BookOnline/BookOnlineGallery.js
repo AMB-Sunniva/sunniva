@@ -5,13 +5,13 @@ const projects = [
     title: 'VIRTUAL CONSULTATION',
     description: '30 min',
     imageUrl: '/images/picSeven.jpeg',
-    href: ''
+    href: 'https://calendly.com/dillon-craw/virtual-consultation'
   },
   {
     title: 'FINANCING CONSULTATION',
     description: '30 min',
     imageUrl: '/images/picThree.jpeg',
-    href: ''
+    href: 'https://calendly.com/dillon-craw/30min'
   },
 ];
 
