@@ -7,7 +7,11 @@ const EditProduct = dynamic(() => import("@/components/EditProduct"), {
 });
 
 export default function Page() {
-  return <EditProduct />;
+  return (
+    <div style={{ padding: "6rem 0rem 2rem" }}>
+      <EditProduct />;
+    </div>
+  );
 }
 
 export async function generateStaticParams() {
