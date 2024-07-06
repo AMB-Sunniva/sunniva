@@ -3,10 +3,13 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import React, { useState } from "react";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function Header({ openCart }) {
   const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+
+  const auth = useAuth();
 
   const totalItemsInCart = cart.reduce((acc, item) => {
     return acc + item.quantity;
@@ -78,6 +81,11 @@ export default function Header({ openCart }) {
           <Link className="hover:text-custom-tan" href="/shop">
             SHOP
           </Link>
+          {auth.user && (
+            <Link className="hover:text-custom-tan" href="/admin/shop">
+              ADMIN SHOP
+            </Link>
+          )}
           <Link className="hover:text-custom-tan" href="/contact-us">
             CONTACT US
           </Link>

@@ -1,8 +1,14 @@
+"use client";
+import React from "react";
 import ProductCard from "@/components/Shop/ProductCard";
-import products from "../../data/products";
 import ProtectedRoute from "../../../components/protectedRoutes";
+import { useFirestore } from "@/app/context/FirestoreContext";
 
 export default function AdminShop() {
+  const { products, loading } = useFirestore();
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <ProtectedRoute>
       <div className="container mx-auto py-8">

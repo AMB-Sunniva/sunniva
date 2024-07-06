@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import { FirestoreProvider } from "./context/FirestoreContext";
 import { CartProvider } from "./context/CartContext";
 import Cart from "@/components/Cart";
 
@@ -23,12 +24,14 @@ export default function Layout({ children }) {
       </head>
       <body>
         <AuthProvider>
-          <CartProvider>
-            <Header openCart={openCart} />
-            <main>{children}</main>
-            <Cart isOpen={isCartOpen} closeCart={closeCart} />
-            <Footer />
-          </CartProvider>
+          <FirestoreProvider>
+            <CartProvider>
+              <Header openCart={openCart} />
+              <main>{children}</main>
+              <Cart isOpen={isCartOpen} closeCart={closeCart} />
+              <Footer />
+            </CartProvider>
+          </FirestoreProvider>
         </AuthProvider>
       </body>
     </html>
