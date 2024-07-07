@@ -1,13 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Image from "next/image";
 import { db, storage } from "@/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditProduct = () => {
   const { id } = useParams();
+  const router = useRouter();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -46,10 +54,10 @@ const EditProduct = () => {
     if (product) {
       try {
         await updateDoc(doc(db, "products", id), product);
-        alert("Product updated successfully!");
+        toast.success("Product updated successfully!");
       } catch (error) {
         console.error("Error updating product:", error);
-        alert("Failed to update product. Please try again.");
+        toast.error("Failed to update product. Please try again.");
       }
     }
   };
@@ -57,6 +65,14 @@ const EditProduct = () => {
   const handleImageUpload = async (e) => {
     e.preventDefault();
     try {
+      // Delete old images
+      const deleteOldImages = images.map((url) => {
+        const imageRef = ref(storage, url);
+        return deleteObject(imageRef);
+      });
+      await Promise.all(deleteOldImages);
+
+      // Upload new images
       const newImages = await Promise.all(
         selectedImages.map(async (image) => {
           const imageRef = ref(storage, `products/${id}/${image.name}`);
@@ -66,14 +82,14 @@ const EditProduct = () => {
         })
       );
 
-      const updatedImages = [...images, ...newImages];
-      setImages(updatedImages);
-      await updateDoc(doc(db, "products", id), { images: updatedImages });
+      // Update Firestore document with new images
+      setImages(newImages);
+      await updateDoc(doc(db, "products", id), { images: newImages });
       setSelectedImages([]);
-      alert("Images uploaded successfully!");
+      toast.success("Images uploaded successfully!");
     } catch (error) {
       console.error("Error uploading images:", error);
-      alert("Failed to upload images. Please try again.");
+      toast.error("Failed to upload images. Please try again.");
     }
   };
 
@@ -82,12 +98,21 @@ const EditProduct = () => {
     setSelectedImages(files);
   };
 
-  if (loading) return <p>Loading...</p>;
+  const handleBackToProducts = () => {
+    router.push("/admin/shop");
+  };
 
-  console.log(images);
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className="container mx-auto py-8">
+      <ToastContainer />
+      <button
+        onClick={handleBackToProducts}
+        className="bg-gray-500 text-white py-2 px-4 rounded mb-4"
+      >
+        Back to Products
+      </button>
       {product && (
         <div className="flex flex-col md:flex-row items-center justify-center">
           {images.length > 0 && (

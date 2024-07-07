@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { db, storage } from "@/firebase"; // Adjust the import according to your project structure
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddProduct() {
   const [productName, setProductName] = useState("");
@@ -24,31 +26,52 @@ export default function AddProduct() {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
+      // Add the product without images first to get the document ID
+      const productRef = await addDoc(collection(db, "products"), {
+        productName,
+        price,
+        description,
+        images: [],
+      });
+
       const newImages = await Promise.all(
         selectedImages.map(async (image) => {
-          const imageRef = ref(storage, `products/${image.name}`);
+          const imageRef = ref(
+            storage,
+            `products/${productRef.id}/${image.name}`
+          );
           await uploadBytes(imageRef, image);
           const downloadURL = await getDownloadURL(imageRef);
           return downloadURL;
         })
       );
 
-      await addDoc(collection(db, "products"), {
-        productName,
-        price,
-        description,
+      // Update the product document with the image URLs
+      await updateDoc(doc(db, "products", productRef.id), {
         images: newImages,
       });
-      alert("Product added successfully!");
+
+      toast.success("Product added successfully!");
       router.push("/admin/shop");
     } catch (error) {
       console.error("Error adding product:", error);
-      alert("Failed to add product. Please try again.");
+      toast.error("Failed to add product. Please try again.");
     }
+  };
+
+  const handleBackToProducts = () => {
+    router.push("/admin/shop");
   };
 
   return (
     <div className="container mx-auto py-8">
+      <ToastContainer />
+      <button
+        onClick={handleBackToProducts}
+        className="bg-gray-500 text-white py-2 px-4 rounded mb-4"
+      >
+        Back to Products
+      </button>
       <h1 className="text-3xl font-bold mb-4">Add Product</h1>
       <form onSubmit={handleAddProduct} className="space-y-4">
         <div>

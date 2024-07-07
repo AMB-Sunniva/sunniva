@@ -1,16 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { db } from "@/firebase"; // Ensure the correct import path
+import { db, storage } from "@/firebase"; // Ensure the correct import path
 import {
   collection,
   deleteDoc,
   doc,
   onSnapshot,
   query,
+  getDoc,
 } from "firebase/firestore";
+import { ref, deleteObject, listAll } from "firebase/storage";
 import ProductCard from "@/components/Shop/ProductCard";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function AdminShop() {
   const [products, setProducts] = useState([]);
@@ -37,8 +39,26 @@ export default function AdminShop() {
 
   const handleDeleteProduct = async (id) => {
     try {
-      await deleteDoc(doc(db, "products", id));
-      toast.success("Product deleted successfully!");
+      // Fetch the product document
+      const productRef = doc(db, "products", id);
+      const productSnap = await getDoc(productRef);
+      if (productSnap.exists()) {
+        const productData = productSnap.data();
+        const images = productData.images || [];
+
+        // List and delete all objects in the product's folder
+        const folderRef = ref(storage, `products/${id}`);
+        const { items } = await listAll(folderRef);
+
+        const deletePromises = items.map((itemRef) => deleteObject(itemRef));
+        await Promise.all(deletePromises);
+
+        // Delete the product document
+        await deleteDoc(productRef);
+        toast.success("Product and associated images deleted successfully!");
+      } else {
+        toast.error("Product does not exist!");
+      }
     } catch (error) {
       console.error("Error deleting product:", error);
       toast.error("Failed to delete product. Please try again.");
@@ -49,6 +69,7 @@ export default function AdminShop() {
 
   return (
     <div className="container mx-auto py-8">
+      <ToastContainer />
       <div style={{ padding: "6rem 0rem 2rem", textAlign: "center" }}>
         <hr style={{ width: "3%", borderColor: "#333", margin: "30px auto" }} />
         <h1
