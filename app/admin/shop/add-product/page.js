@@ -1,15 +1,11 @@
 import { db } from "@/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import dynamic from "next/dynamic";
-
-const EditProduct = dynamic(() => import("@/components/EditProduct"), {
-  ssr: false,
-});
+import AddProduct from "@/components/AddProduct";
 
 export default function Page() {
   return (
     <div style={{ padding: "6rem 0rem 2rem" }}>
-      <EditProduct />;
+      <AddProduct />;
     </div>
   );
 }
