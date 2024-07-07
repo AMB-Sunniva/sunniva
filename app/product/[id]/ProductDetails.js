@@ -10,8 +10,8 @@ const ProductDetails = ({ product }) => {
     <div className="container mx-auto py-8">
       <div className="flex flex-col md:flex-row items-center justify-center">
         <Image
-          src={product.image}
-          alt={product.name}
+          src={product.images[0]}
+          alt={product.productName}
           width={300}
           height={300}
           className="w-64 md:w-96 h-auto object-cover mb-4 md:mb-0 md:mr-8"
