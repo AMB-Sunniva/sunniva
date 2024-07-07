@@ -1,25 +1,25 @@
-import ProductDetails from './ProductDetails';
-import products from '@/app/data/products';
+import { db } from "@/firebase"; // Adjust the import according to your project structure
+import { collection, getDocs } from "firebase/firestore";
+import dynamic from "next/dynamic";
 
-export async function generateStaticParams() {
-  return products.map(product => ({
-    id: product.id.toString(),
-  }));
+const ProductDetails = dynamic(() => import("@/components/EditProduct"), {
+  ssr: false,
+});
+
+export default function Page() {
+  return (
+    <div style={{ padding: "6rem 0rem 2rem" }}>
+      <ProductDetails />
+    </div>
+  );
 }
 
-const Page = ({ params }) => {
-  const { id } = params;
-  const product = products.find(product => product.id === parseInt(id));
+export async function generateStaticParams() {
+  const productsCollection = collection(db, "products");
+  const productSnapshot = await getDocs(productsCollection);
+  const paths = productSnapshot.docs.map((doc) => ({
+    id: doc.id,
+  }));
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
-  return (
-  <div style={{padding: '6rem 0rem 2rem'}}>
-    <ProductDetails product={product} />
-  </div>
-  )
-};
-
-export default Page;
+  return paths;
+}

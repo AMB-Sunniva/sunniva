@@ -50,7 +50,7 @@ const Cart = ({ isOpen, closeCart }) => {
               >
                 <div className="flex items-center space-x-4">
                   <Image
-                    src={item.image}
+                    src={item.images[0]}
                     alt={item.name}
                     width={300}
                     height={300}
