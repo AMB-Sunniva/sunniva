@@ -1,7 +1,12 @@
+"use client";
 import ProductCard from "@/components/Shop/ProductCard";
-import products from "../data/products";
+import { useFirestore } from "@/app/context/FirestoreContext";
 
 export default function Shop() {
+  const { products, loading } = useFirestore();
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <div className="container mx-auto py-8">
       <div style={{ padding: "6rem 0rem 2rem", textAlign: "center" }}>

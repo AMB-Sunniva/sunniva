@@ -1,21 +1,23 @@
 "use client";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../app/context/AuthContext";
+import { useAuth } from "@/app/context/AuthContext"; // Adjust the import according to your project structure
 
-export default function ProtectedRoute({ children }) {
+const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/admin"); // Redirect to sign-in page if not authenticated
+      router.push("/login"); // Redirect to login page if not authenticated
     }
   }, [user, loading, router]);
 
-  if (loading) {
-    return <div>Loading...</div>; // Show a loading message while checking auth status
+  if (loading || !user) {
+    return <div>Loading...</div>; // Show loading indicator while checking auth status
   }
 
   return children;
-}
+};
+
+export default ProtectedRoute;

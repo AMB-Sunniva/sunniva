@@ -1,18 +1,11 @@
-import { db } from "@/firebase"; // Adjust the import according to your project structure
+import { db } from "@/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import dynamic from "next/dynamic";
-
-const ProductDetails = dynamic(
-  () => import("@/components/Shop/ProductDetails"),
-  {
-    ssr: false,
-  }
-);
+import AddProduct from "@/components/Admin/AddProduct";
 
 export default function Page() {
   return (
     <div style={{ padding: "6rem 0rem 2rem" }}>
-      <ProductDetails />
+      <AddProduct />;
     </div>
   );
 }

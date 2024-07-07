@@ -1,8 +1,8 @@
-import { db } from "@/firebase"; // Adjust the import according to your project structure
+import { db } from "@/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import dynamic from "next/dynamic";
 
-const EditProduct = dynamic(() => import("@/components/EditProduct"), {
+const EditProduct = dynamic(() => import("@/components/Admin/EditProduct"), {
   ssr: false,
 });
 
