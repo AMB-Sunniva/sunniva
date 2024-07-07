@@ -3,6 +3,7 @@ import "./globals.css";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CustomToastContainer from "../components/Toast/CustomToastContainer";
 import { AuthProvider } from "./context/AuthContext";
 import { FirestoreProvider } from "./context/FirestoreContext";
 import { CartProvider } from "./context/CartContext";
@@ -27,6 +28,7 @@ export default function Layout({ children }) {
           <FirestoreProvider>
             <CartProvider>
               <Header openCart={openCart} />
+              <CustomToastContainer />
               <main>{children}</main>
               <Cart isOpen={isCartOpen} closeCart={closeCart} />
               <Footer />

@@ -2,9 +2,12 @@ import { db } from "@/firebase"; // Adjust the import according to your project 
 import { collection, getDocs } from "firebase/firestore";
 import dynamic from "next/dynamic";
 
-const ProductDetails = dynamic(() => import("@/components/EditProduct"), {
-  ssr: false,
-});
+const ProductDetails = dynamic(
+  () => import("@/components/Shop/ProductDetails"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
   return (

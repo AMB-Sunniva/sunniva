@@ -1,6 +1,6 @@
 import { db } from "@/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import AddProduct from "@/components/AddProduct";
+import AddProduct from "@/components/Admin/AddProduct";
 
 export default function Page() {
   return (

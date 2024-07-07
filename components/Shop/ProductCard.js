@@ -4,14 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/app/context/CartContext";
 import { getAuth } from "firebase/auth";
+import { FiTrash2 } from "react-icons/fi";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onDelete }) => {
   const { addToCart } = useCart();
   const auth = getAuth();
-  console.log(product);
 
   return (
-    <div className="border shadow-md p-4 text-center">
+    <div className="border shadow-md p-4 text-center relative">
       <Link href={`/product/${product.id}`}>
         {product.images.length > 0 && (
           <div className="relative group">
@@ -39,9 +39,17 @@ const ProductCard = ({ product }) => {
         <p className="text-gray-700 mb-2">${product.price}</p>
       </Link>
       {auth.currentUser ? (
-        <Link href={`/admin/shop/${product.id}`}>
-          <Button>Edit Product</Button>
-        </Link>
+        <>
+          <Link href={`/admin/shop/${product.id}`}>
+            <Button>Edit Product</Button>
+          </Link>
+          <button
+            className="absolute bottom-2 right-2 bg-blue-500 text-white p-1 rounded-full hover:bg-blue-700"
+            onClick={() => onDelete(product.id)}
+          >
+            <FiTrash2 size={16} />
+          </button>
+        </>
       ) : (
         <Button type="primary" onClick={() => addToCart(product)}>
           Add to Cart
