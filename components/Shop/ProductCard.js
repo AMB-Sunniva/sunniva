@@ -9,6 +9,7 @@ import { FiTrash2 } from "react-icons/fi";
 const ProductCard = ({ product, onDelete }) => {
   const { addToCart } = useCart();
   const auth = getAuth();
+  console.log(product);
 
   return (
     <div className="border shadow-md p-4 text-center relative">
