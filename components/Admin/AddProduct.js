@@ -7,6 +7,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 export default function AddProduct() {
   const [productName, setProductName] = useState("");
@@ -64,46 +65,48 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 w-1/2">
       <ToastContainer />
       <button
         onClick={handleBackToProducts}
-        className="bg-gray-500 text-white py-2 px-4 rounded mb-4"
-      >
+        className="text-custom-blue bg-white hover:underline flex items-center justify-center pb-3"
+        >
+          <IoIosArrowRoundBack size="1.5em" />
         Back to Products
       </button>
-      <h1 className="text-3xl font-bold mb-4">Add Product</h1>
+      <h1 className="text-3xl font-bold mb-4 text-custom-gray">Add Product</h1>
       <form onSubmit={handleAddProduct} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-medium text-custom-gray">
             Product Name
           </label>
           <input
             type="text"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="mt-1 block w-1/2 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-medium text-custom-gray">
             Price
           </label>
           <input
             type="number"
+            step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="mt-1 block w-1/4 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-medium text-custom-gray">
             Description
           </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
         </div>
         <div>
@@ -126,7 +129,7 @@ export default function AddProduct() {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+          className="px-4 py-2 font-thin tracking-2px my-8 bg-custom-blue text-white hover:bg-white hover:text-custom-blue border border-custom-blue"
         >
           Add Product
         </button>
