@@ -14,7 +14,7 @@ const ProductDetails = ({ product }) => {
           alt={product.productName}
           width={300}
           height={300}
-          className="w-64 md:w-96 h-auto object-cover mb-4 md:mb-0 md:mr-8"
+          className="w-96 h-96 object-cover mb-4 md:mb-0 md:mr-8"
         />
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
