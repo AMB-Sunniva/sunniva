@@ -12,6 +12,8 @@ import {
 } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from '../Button'
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -20,6 +22,7 @@ const EditProduct = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
+  const [buttonDisabled, setButtonDisabled] = useState(true)
 
   useEffect(() => {
     if (id) {
@@ -48,6 +51,7 @@ const EditProduct = () => {
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
     setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
+    setButtonDisabled(false)
   };
 
   const handleFieldUpdate = async () => {
@@ -109,8 +113,9 @@ const EditProduct = () => {
       <ToastContainer />
       <button
         onClick={handleBackToProducts}
-        className="bg-gray-500 text-white py-2 px-4 rounded mb-4"
+        className="text-custom-blue bg-white hover:underline flex items-center justify-center"
       >
+        <IoIosArrowRoundBack size="1.5em" />
         Back to Products
       </button>
       {product && (
@@ -122,7 +127,7 @@ const EditProduct = () => {
                 alt={product.productName}
                 width={300}
                 height={300}
-                className="w-64 md:w-96 h-auto object-cover mb-4 md:mb-0 md:mr-8"
+                className="w-96 h-96 object-cover mb-4 md:mb-0 md:mr-8"
               />
               {images.length > 1 && (
                 <Image
@@ -130,13 +135,13 @@ const EditProduct = () => {
                   alt={product.productName}
                   width={300}
                   height={300}
-                  className="absolute top-0 left-0 w-64 md:w-96 h-auto object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute top-0 left-0 w-96 h-96 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
               )}
             </div>
           )}
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold mb-4">
+            <h1 className="text-3xl font-bold mb-4 text-custom-gray">
               <input
                 type="text"
                 name="productName"
@@ -145,14 +150,15 @@ const EditProduct = () => {
                 className="w-full text-3xl font-bold mb-4"
               />
             </h1>
-            <p className="text-gray-700 mb-4">
-              $
+            <p className="text-gray-700 mb-4 flex">
+              <span className="pr-1">$</span>
               <input
                 type="number"
+                step="0.01"
                 name="price"
                 value={product.price}
                 onChange={handleFieldChange}
-                className="w-full text-gray-700 mb-4"
+                className="w-1/4 text-gray-700 mb-4 border border-gray-300 px-1"
               />
             </p>
             <p className="text-gray-700">
@@ -160,16 +166,16 @@ const EditProduct = () => {
                 name="description"
                 value={product.description}
                 onChange={handleFieldChange}
-                className="w-full text-gray-700"
+                className="w-full text-gray-700 border border-gray-300 px-1"
               />
             </p>
 
-            <button
+            <Button
               onClick={handleFieldUpdate}
-              className="bg-blue-500 text-white py-2 px-4 mt-4 rounded"
+              disabled={buttonDisabled}
             >
               Update Product
-            </button>
+            </Button>
 
             <form onSubmit={handleImageUpload} className="mt-4">
               <input type="file" multiple onChange={handleImageSelection} />
@@ -185,12 +191,12 @@ const EditProduct = () => {
                   />
                 ))}
               </div>
-              <button
+             {selectedImages.length > 0 && <button
                 type="submit"
-                className="bg-green-500 text-white py-2 px-4 mt-4 rounded"
+                className="px-4 py-2 font-thin tracking-2px my-8 border border-custom-blue text-custom-blue bg-white hover:bg-custom-blue hover:text-white"
               >
                 Upload Images
-              </button>
+              </button>}
             </form>
           </div>
         </div>

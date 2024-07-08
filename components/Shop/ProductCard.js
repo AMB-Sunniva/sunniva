@@ -20,7 +20,7 @@ const ProductCard = ({ product, onDelete }) => {
               alt={product.productName}
               width={300}
               height={300}
-              className="w-64 md:w-96 h-auto object-cover mb-4 md:mb-0 md:mr-8"
+              className="w-96 h-96 object-cover mb-4 md:mb-0 md:mr-8"
             />
             {product.images.length > 1 && (
               <Image
@@ -28,7 +28,7 @@ const ProductCard = ({ product, onDelete }) => {
                 alt={product.productName}
                 width={300}
                 height={300}
-                className="absolute top-0 left-0 w-64 md:w-96 h-auto object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute top-0 left-0 w-96 h-96 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
             )}
           </div>

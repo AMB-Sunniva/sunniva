@@ -95,7 +95,7 @@ export default function AdminShop() {
           className="flex justify-center items-center border-2 border-dashed border-gray-400 p-4 cursor-pointer"
           onClick={handleAddProduct}
         >
-          <button className="text-blue-500">Add Product</button>
+          <button className="text-custom-blue">Add Product</button>
         </div>
       </div>
     </div>
