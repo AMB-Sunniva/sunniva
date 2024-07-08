@@ -4,12 +4,6 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const config = {
-  api: {
-    bodyParser: false, // Disallow body parsing, consume as stream
-  },
-};
-
 export async function POST(req) {
   const buf = await buffer(req);
   const sig = req.headers.get("stripe-signature");
@@ -40,3 +34,14 @@ export async function POST(req) {
 
   return new NextResponse(JSON.stringify({ received: true }), { status: 200 });
 }
+
+// Update the configuration format
+export const dynamic = "force-static";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
+
+export const config = {
+  api: {
+    bodyParser: false, // Disallow body parsing, consume as stream
+  },
+};
