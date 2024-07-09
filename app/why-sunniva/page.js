@@ -26,10 +26,10 @@ export default function WhySunnivaPage() {
             </div>
             <div className={styles.box}>
                 <div className={styles.content}>
-                    <p>
+                    <p className='order-2 md:order-1'>
                         We pride ourselves on delivering the pinnacle of solar innovation and design. We utilize top-tier solar panels, harnessing cutting-edge technology to maximize energy conversion and efficiency. Our use of microinverters guarantees optimal performance by individually optimizing panel outputs. Our custom racking system ensures a robust foundation for your solar array. Complementing this excellence, our wood shade structures stand as unique and enduring masterpieces, combining bespoke craftsmanship with rugged durability for an outdoor space that truly stands the test of time.
                     </p>
-                    <h2>OUR PRODUCTS</h2>
+                    <h2 className='order-1 md:order-2 md:mr-4'>OUR PRODUCTS</h2>
                 </div>
             </div>
         </div>

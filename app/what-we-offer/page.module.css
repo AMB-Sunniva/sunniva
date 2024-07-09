@@ -35,3 +35,9 @@
     color: #474949;
     letter-spacing: 2px;
 }
+
+@media (max-width: 700px) {
+    .diySection p {
+        width: 75vw;
+    }
+}
