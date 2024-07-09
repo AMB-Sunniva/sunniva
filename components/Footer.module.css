@@ -36,3 +36,13 @@
     text-align: center;
     padding: 12px;
   }
+
+  @media (max-width: 700px) {
+    .links {
+        text-align: center;
+        font-size: x-small;
+        }
+    .copyright {
+      font-size: x-small;
+    }
+  }

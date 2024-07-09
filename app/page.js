@@ -15,7 +15,7 @@ export default function HomePage() {
         </div>
         <div>
           <div className={styles.title}>
-            <hr style={{width:'5%', borderColor: '#333', margin: '30px 0'}} />
+            <hr className={styles.customHr} />
             <h1>STUNNING BACKYARD SHADE STRUCTURES</h1>
           </div>
           <div className={styles.aboutSection}>
@@ -55,7 +55,7 @@ export default function HomePage() {
             <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
           </div>
           <div className={styles.benefits}>
-            <hr style={{width:'5%', borderColor: '#333', margin: '30px 0 1.5em 0'}} />
+            <hr className={styles.customHr} />
             <h1>NO LEAKS</h1>
           </div>
           <div className={styles.aboutSection}>

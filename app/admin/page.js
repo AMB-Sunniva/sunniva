@@ -88,7 +88,7 @@ export default function Admin() {
             </div>
           ) : (
             <div className="w-6/12">
-              <div className="w-full p-2 border border-gray-200 bg-gray-200 placeholder-black placeholder-opacity-50 placeholder-font-light m-4">
+              <div className="w-full p-2 border border-gray-200 bg-gray-200 placeholder-black placeholder-opacity-50 placeholder-font-light my-4 mx-auto">
                 <label htmlFor="email"></label>
                 <input
                   className="w-full p-2 border border-gray-200 bg-gray-200 box-border placeholder-black placeholder-opacity-50 placeholder-font-light"
@@ -100,7 +100,7 @@ export default function Admin() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="w-full p-2 border border-gray-200 bg-gray-200 placeholder-black placeholder-opacity-50 placeholder-font-light m-4">
+              <div className="w-full p-2 border border-gray-200 bg-gray-200 placeholder-black placeholder-opacity-50 placeholder-font-light my-4 mx-auto">
                 <label htmlFor="password"></label>
                 <input
                   className="w-full p-2 border border-gray-200 bg-gray-200 box-border placeholder-black placeholder-opacity-50 placeholder-font-light"

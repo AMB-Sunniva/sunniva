@@ -64,3 +64,21 @@
         padding: 1rem;
     }
 }
+
+@media (max-width: 700px) {
+    .content {
+        flex-direction: column;
+    }
+    .container {
+        padding: 24px;
+    }
+    .box {
+        margin: 24px 0;
+    }
+    .whyDescription{
+        padding: 7rem 0 0;
+    }
+    .whyDescription p {
+        margin: 16px;
+    }
+}

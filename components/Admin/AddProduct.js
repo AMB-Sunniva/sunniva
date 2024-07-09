@@ -84,7 +84,7 @@ export default function AddProduct() {
             type="text"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
-            className="mt-1 block w-1/2 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
+            className="mt-1 block w-full md:w-1/2 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
         </div>
         <div>
@@ -96,7 +96,7 @@ export default function AddProduct() {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="mt-1 block w-1/4 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
+            className="mt-1 block w-full md:w-1/4 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
         </div>
         <div>

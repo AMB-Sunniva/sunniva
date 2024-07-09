@@ -48,3 +48,23 @@
       max-width: 100%;
     }
   }
+
+  @media (max-width: 700px) {
+    .card {
+      position: static;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cardImage {
+      position: static;
+      transform: none;
+      display: flex;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .cardContent {
+      padding: 24px;
+    }
+  }
