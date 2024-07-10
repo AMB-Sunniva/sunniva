@@ -85,7 +85,7 @@ const Cart = ({ isOpen, closeCart }) => {
               </div>
             ))}
             <div className="flex justify-end font-bold text-xl">
-              Total: ${getTotalPrice()}
+              Total: ${getTotalPrice().toFixed(2)}
             </div>
             <div className="flex justify-end">
               <Button>Checkout</Button>
