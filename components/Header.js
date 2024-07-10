@@ -20,19 +20,20 @@ export default function Header({ openCart }) {
   };
 
   return (
-    <header className="bg-bg-gray text-white fixed w-full top-0 z-40">
+    <header className="bg-bg-gray text-white fixed w-full top-0 z-30">
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
         <div className="flex items-center">
           <Image
             src="/images/whiteLogo.png"
             alt="Sunniva"
-            width={200}
+            width={100}
             height={100}
+            className="w-fulllg:w-1/2 md:w-1/3 sm:w-1/4"
           />
         </div>
         {/* Hamburger button for mobile */}
         <div className="lg:hidden flex">
-          <div className="relative m-6">
+          <div className="relative mx-5 my-3">
             <button onClick={openCart}>
               <CiShoppingCart size="2.5em" />
               {totalItemsInCart > 0 && (
@@ -102,14 +103,32 @@ export default function Header({ openCart }) {
         </nav>
       </div>
       {/* Mobile menu */}
-      <div className={`${isOpen ? "block" : "hidden"} lg:hidden`}>
-        <div className="p-6 flex flex-col items-end" onClick={toggleMenu}>
-          <Link href="/">HOME</Link>
-          <Link href="/what-we-offer">WHAT WE OFFER</Link>
-          <Link href="/why-sunniva">WHY SUNNIVA</Link>
-          <Link href="/installer">INSTALLERS</Link>
-          <Link href="/shop">SHOP</Link>
-          <Link href="/contact-us">CONTACT US</Link>
+      <div className={`${isOpen ? 'max-h-screen opacity-100' : 'hidden'
+        } lg:hidden fixed inset-0 bg-custom-gray overflow-hidden transition-all duration-500 ease-in-out z-40`}>
+        <div onClick={toggleMenu}>
+          <div className="flex justify-end">
+            <button
+              onClick={toggleMenu}
+              type="button"
+              className="text-white hover:text-gray-400 focus:text-gray-400 focus:outline-none px-4 pt-6 md:pt-12 md:px-6"
+            >
+              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M18.364 5.636l-1.414-1.414L12 9.172l-4.95-4.95-1.414 1.414L10.828 12l-5.192 5.192 1.414 1.414L12 14.828l4.95 4.95 1.414-1.414L13.172 12l5.192-5.192z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="py-4 px-12 md:px-16 flex flex-col text-2xl gap-6">
+            <Link href="/">HOME</Link>
+            <Link href="/what-we-offer">WHAT WE OFFER</Link>
+            <Link href="/why-sunniva">WHY SUNNIVA</Link>
+            <Link href="/installer">INSTALLERS</Link>
+            <Link href="/shop">SHOP</Link>
+            <Link href="/contact-us">CONTACT US</Link>
+          </div>
         </div>
       </div>
     </header>
