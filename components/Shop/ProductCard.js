@@ -33,10 +33,10 @@ const ProductCard = ({ product, onDelete }) => {
             )}
           </div>
         )}
-        <h3 className="text-lg font-semibold mb-2 text-custom-gray">
-          {product.name}
+        <h3 className="text-lg font-semibold mb-2 mt-4 text-custom-gray">
+          {product.productName}
         </h3>
-        <p className="text-gray-700 mb-2">${product.price}</p>
+        <p className="text-gray-700">${product.price}</p>
       </Link>
       {auth.currentUser ? (
         <>
@@ -55,6 +55,9 @@ const ProductCard = ({ product, onDelete }) => {
           Add to Cart
         </Button>
       )}
+      <p className="text-gray-400 mb-2">
+        {"Excluding Sales Tax | Shipping Information"}
+      </p>
     </div>
   );
 };
