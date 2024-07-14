@@ -17,7 +17,7 @@ const ProductCard = ({ product, onDelete }) => {
           <div className="relative group">
             <Image
               src={product.images[0]}
-              alt={product.productName}
+              alt={product.name}
               width={300}
               height={300}
               className="w-96 h-96 object-cover mb-4 md:mb-0 md:mr-8"
@@ -25,7 +25,7 @@ const ProductCard = ({ product, onDelete }) => {
             {product.images.length > 1 && (
               <Image
                 src={product.images[1]}
-                alt={product.productName}
+                alt={product.name}
                 width={300}
                 height={300}
                 className="absolute top-0 left-0 w-96 h-96 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -34,7 +34,7 @@ const ProductCard = ({ product, onDelete }) => {
           </div>
         )}
         <h3 className="text-lg font-semibold mb-2 mt-4 text-custom-gray">
-          {product.productName}
+          {product.name}
         </h3>
         <p className="text-gray-700">${product.price}</p>
       </Link>

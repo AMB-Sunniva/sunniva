@@ -12,8 +12,26 @@ import {
 } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Button from '../Button'
+import Button from "../Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
+
+const CollapsibleSection = ({ title, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="mb-4">
+      <button
+        className="w-full text-left text-xl font-bold text-gray-700 mb-2 focus:outline-none"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {title}
+      </button>
+      {isOpen && (
+        <div className="px-4 py-2 bg-gray-100 rounded-md">{children}</div>
+      )}
+    </div>
+  );
+};
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -22,7 +40,12 @@ const EditProduct = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
-  const [buttonDisabled, setButtonDisabled] = useState(true)
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [newSize, setNewSize] = useState("");
+  const [newEndBoardDesign, setNewEndBoardDesign] = useState("");
+  const [newLumberSize, setNewLumberSize] = useState("");
+  const [newStainColor, setNewStainColor] = useState("");
+  const [newRackingClamp, setNewRackingClamp] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -35,7 +58,7 @@ const EditProduct = () => {
             setProduct({ id: productSnap.id, ...productData });
             setImages(productData.images || []);
           } else {
-            console.log("No such document!");
+            console.error("No such document!");
           }
         } catch (error) {
           console.error("Error fetching product:", error);
@@ -51,7 +74,26 @@ const EditProduct = () => {
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
     setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
-    setButtonDisabled(false)
+    setButtonDisabled(false);
+  };
+
+  const handleAddItem = (field, newItem, setNewItem) => {
+    if (newItem.trim() !== "") {
+      setProduct((prevProduct) => ({
+        ...prevProduct,
+        [field]: [...prevProduct[field], newItem.trim()],
+      }));
+      setNewItem("");
+      setButtonDisabled(false);
+    }
+  };
+
+  const handleRemoveItem = (field, item) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [field]: prevProduct[field].filter((i) => i !== item),
+    }));
+    setButtonDisabled(false);
   };
 
   const handleFieldUpdate = async () => {
@@ -119,28 +161,36 @@ const EditProduct = () => {
         Back to Products
       </button>
       {product && (
-        <div className="flex flex-col md:flex-row items-center justify-center">
-          {images.length > 0 && (
-            <div className="relative group">
-              <Image
-                src={images[0]}
-                alt={product.productName}
-                width={300}
-                height={300}
-                className="w-96 h-96 object-cover mb-4 md:mb-0 md:mr-8"
-              />
-              {images.length > 1 && (
+        <div className="flex flex-col md:flex-row items-start justify-center">
+          <div className="relative group mb-4 md:mb-0 md:mr-8 w-96 h-96">
+            {images.length > 0 && (
+              <div className="relative w-full h-full">
                 <Image
-                  src={images[1]}
+                  src={images[0]}
                   alt={product.productName}
-                  width={300}
-                  height={300}
-                  className="absolute top-0 left-0 w-96 h-96 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  layout="fill"
+                  className="object-cover"
                 />
-              )}
-            </div>
-          )}
-          <div className="text-center md:text-left">
+                {images.length > 1 && (
+                  <Image
+                    src={images[1]}
+                    alt={product.productName}
+                    layout="fill"
+                    className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                )}
+              </div>
+            )}
+            <p className="text-gray-700 mb-4 max-w-[400px]">
+              <textarea
+                name="description"
+                value={product.description}
+                onChange={handleFieldChange}
+                className="w-full text-gray-700 border border-gray-300 px-1"
+              />
+            </p>
+          </div>
+          <div className="text-center md:text-left max-w-md">
             <h1 className="text-3xl font-bold mb-4 text-custom-gray">
               <input
                 type="text"
@@ -161,19 +211,214 @@ const EditProduct = () => {
                 className="w-1/4 text-gray-700 mb-4 border border-gray-300 px-1"
               />
             </p>
-            <p className="text-gray-700">
-              <textarea
-                name="description"
-                value={product.description}
-                onChange={handleFieldChange}
-                className="w-full text-gray-700 border border-gray-300 px-1"
-              />
-            </p>
 
-            <Button
-              onClick={handleFieldUpdate}
-              disabled={buttonDisabled}
-            >
+            <CollapsibleSection title="Sizes">
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  id="newSize"
+                  value={newSize}
+                  onChange={(e) => setNewSize(e.target.value)}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleAddItem("sizes", newSize, setNewSize)}
+                  className="ml-2 px-2 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Add
+                </button>
+              </div>
+              <ul>
+                {product.sizes.map((size) => (
+                  <li
+                    key={size}
+                    className="flex justify-between items-center mb-2"
+                  >
+                    {size}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem("sizes", size)}
+                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+
+            <CollapsibleSection title="End Board Designs">
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  id="newEndBoardDesign"
+                  value={newEndBoardDesign}
+                  onChange={(e) => setNewEndBoardDesign(e.target.value)}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleAddItem(
+                      "endBoardDesigns",
+                      newEndBoardDesign,
+                      setNewEndBoardDesign
+                    )
+                  }
+                  className="ml-2 px-2 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Add
+                </button>
+              </div>
+              <ul>
+                {product.endBoardDesigns.map((design) => (
+                  <li
+                    key={design}
+                    className="flex justify-between items-center mb-2"
+                  >
+                    {design}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleRemoveItem("endBoardDesigns", design)
+                      }
+                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+
+            <CollapsibleSection title="Lumber Sizes">
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  id="newLumberSize"
+                  value={newLumberSize}
+                  onChange={(e) => setNewLumberSize(e.target.value)}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleAddItem(
+                      "lumberSizes",
+                      newLumberSize,
+                      setNewLumberSize
+                    )
+                  }
+                  className="ml-2 px-2 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Add
+                </button>
+              </div>
+              <ul>
+                {product.lumberSizes.map((size) => (
+                  <li
+                    key={size}
+                    className="flex justify-between items-center mb-2"
+                  >
+                    {size}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem("lumberSizes", size)}
+                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+
+            <CollapsibleSection title="Stain Colors">
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  id="newStainColor"
+                  value={newStainColor}
+                  onChange={(e) => setNewStainColor(e.target.value)}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleAddItem(
+                      "stainColors",
+                      newStainColor,
+                      setNewStainColor
+                    )
+                  }
+                  className="ml-2 px-2 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Add
+                </button>
+              </div>
+              <ul>
+                {product.stainColors.map((color) => (
+                  <li
+                    key={color}
+                    className="flex justify-between items-center mb-2"
+                  >
+                    {color}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem("stainColors", color)}
+                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+
+            <CollapsibleSection title="Racking Clamps">
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  id="newRackingClamp"
+                  value={newRackingClamp}
+                  onChange={(e) => setNewRackingClamp(e.target.value)}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleAddItem(
+                      "rackingClamps",
+                      newRackingClamp,
+                      setNewRackingClamp
+                    )
+                  }
+                  className="ml-2 px-2 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Add
+                </button>
+              </div>
+              <ul>
+                {product.rackingClamps.map((clamp) => (
+                  <li
+                    key={clamp}
+                    className="flex justify-between items-center mb-2"
+                  >
+                    {clamp}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem("rackingClamps", clamp)}
+                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+
+            <Button onClick={handleFieldUpdate} disabled={buttonDisabled}>
               Update Product
             </Button>
 
@@ -191,12 +436,14 @@ const EditProduct = () => {
                   />
                 ))}
               </div>
-             {selectedImages.length > 0 && <button
-                type="submit"
-                className="px-4 py-2 font-thin tracking-2px my-8 border border-custom-blue text-custom-blue bg-white hover:bg-custom-blue hover:text-white"
-              >
-                Upload Images
-              </button>}
+              {selectedImages.length > 0 && (
+                <button
+                  type="submit"
+                  className="px-4 py-2 font-thin tracking-2px my-8 border border-custom-blue text-custom-blue bg-white hover:bg-custom-blue hover:text-white"
+                >
+                  Upload Images
+                </button>
+              )}
             </form>
           </div>
         </div>

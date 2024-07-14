@@ -37,6 +37,8 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [attachedOrStandAlone, setAttachedOrStandAlone] = useState("");
   const [endBoardDesign, setEndBoardDesign] = useState("");
+  const [lumberSize, setLumberSize] = useState("");
+  const [stainColor, setStainColor] = useState("");
 
   useEffect(() => {
     if (product) {
@@ -54,7 +56,7 @@ const ProductDetails = () => {
             const productData = productSnap.data();
             setProduct({ id: productSnap.id, ...productData });
           } else {
-            console.log("No such document!");
+            console.error("No such document!");
           }
         } catch (error) {
           console.error("Error fetching product:", error);
@@ -83,6 +85,14 @@ const ProductDetails = () => {
     setEndBoardDesign(event.target.value);
   };
 
+  const handleLumberSizeChange = (event) => {
+    setLumberSize(event.target.value);
+  };
+
+  const handleStainColorChange = (event) => {
+    setStainColor(event.target.value);
+  };
+
   const handleAddToCart = () => {
     addToCart(product);
     toast.success("Product added to cart!", {
@@ -98,29 +108,32 @@ const ProductDetails = () => {
 
   return (
     <div className="container mx-auto py-8 px-4">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-center">Product Details</h1>
+      </div>
       <div className="flex flex-col md:flex-row items-start justify-center">
         <div className="flex flex-col items-center mb-4 md:mb-0 md:mr-8">
           {product.images.length > 0 && (
-            <div className="relative group mb-4 w-100 h-100">
+            <div className="relative group mb-4 w-[400px] h-[400px]">
               <Image
                 src={product.images[0]}
                 alt={product.name}
-                width={200}
-                height={200}
-                className="w-full h-full object-cover"
+                layout="fill"
+                className="object-cover"
               />
               {product.images.length > 1 && (
                 <Image
                   src={product.images[1]}
                   alt={product.name}
-                  width={200}
-                  height={200}
+                  layout="fill"
                   className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
               )}
             </div>
           )}
-          <p className="text-gray-700 mb-4 ">{product.description}</p>
+          <p className="text-gray-700 mb-4 max-w-[400px]">
+            {product.description}
+          </p>
         </div>
         <div className="text-center md:text-left max-w-md">
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
@@ -196,6 +209,52 @@ const ProductDetails = () => {
               {product.endBoardDesigns.map((design) => (
                 <option key={design} value={design}>
                   {design}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <hr className="my-4" />
+
+          <div className="mb-4">
+            <label
+              htmlFor="lumberSize"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Lumber Size:
+            </label>
+            <select
+              id="lumberSize"
+              value={lumberSize}
+              onChange={handleLumberSizeChange}
+              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              {product.lumberSizes.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <hr className="my-4" />
+
+          <div className="mb-4">
+            <label
+              htmlFor="stainColor"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Stain Color:
+            </label>
+            <select
+              id="stainColor"
+              value={stainColor}
+              onChange={handleStainColorChange}
+              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              {product.stainColors.map((color) => (
+                <option key={color} value={color}>
+                  {color}
                 </option>
               ))}
             </select>
