@@ -26,8 +26,6 @@ const InstallerSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Form submitted:", formData);
-
     setSubmitted(true);
     setFormData({
       company: "",
