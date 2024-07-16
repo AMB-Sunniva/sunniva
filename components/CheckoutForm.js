@@ -47,8 +47,8 @@ const CheckoutForm = ({ amount }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment-success?amount=${amount}`,
-        // return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        // return_url: `https://sunniva-ee7a7.web.app/payment-success?amount=${amount}`,
+        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
       },
     });
 

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 const PaymentSuccess = () => {
@@ -44,4 +45,12 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+const PaymentSuccessPage = () => {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <PaymentSuccess />
+    </React.Suspense>
+  );
+};
+
+export default PaymentSuccessPage;
