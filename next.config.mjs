@@ -10,7 +10,7 @@ const nextConfig = {
 
 export default nextConfig;
 
-next.config.mjs;
+// next.config.mjs;
 
 // import autoCert from "anchor-pki/auto-cert/integrations/next";
 
