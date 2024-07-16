@@ -20,7 +20,7 @@ export default function Header({ openCart }) {
   };
 
   return (
-    <header className="bg-bg-gray text-white fixed w-full top-0 z-30">
+    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 ${isOpen ? '' : 'backdrop-blur'}`}>
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -127,6 +127,11 @@ export default function Header({ openCart }) {
             <Link href="/why-sunniva">WHY SUNNIVA</Link>
             <Link href="/installer">INSTALLERS</Link>
             <Link href="/shop">SHOP</Link>
+            {auth.user && (
+              <Link className="hover:text-custom-tan" href="/admin/shop">
+                ADMIN SHOP
+              </Link>
+            )}
             <Link href="/contact-us">CONTACT US</Link>
           </div>
         </div>

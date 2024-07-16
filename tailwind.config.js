@@ -17,7 +17,7 @@ module.exports = {
         "custom-gray": "#474949",
         "custom-tan": "#E2D9D2",
         "custom-light-gray": "#F0F0F0",
-        "bg-gray": "rgba(51, 51, 51, 0.7)",
+        "bg-gray": "rgba(51, 51, 51, 0.8)",
       },
       letterSpacing: {
         '2px': '2px',
