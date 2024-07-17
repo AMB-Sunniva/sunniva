@@ -6,7 +6,6 @@ const CartContext = createContext();
 export const CartProvider = ({ children, openCart }) => {
   const [cart, setCart] = useState([]);
 
-
   useEffect(() => {
     console.log(cart);
   }, [cart]);
@@ -29,7 +28,6 @@ export const CartProvider = ({ children, openCart }) => {
       }
     });
   };
-
 
   const removeFromCart = (itemId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
@@ -80,15 +78,3 @@ export const CartProvider = ({ children, openCart }) => {
 };
 
 export const useCart = () => useContext(CartContext);
-
-// import React from "react"
-
-// const CartContext = React.createContext({
-//     items: [],
-//     totalAmount: 0,
-//     addItem: (item) => {},
-//     removeItem: (id) => {},
-//     clearCart: () => {}
-// })
-
-// export default CartContext
