@@ -29,6 +29,7 @@ export default function Header({ openCart }) {
             width={100}
             height={100}
             className="w-1/4"
+            priority
           />
         </div>
         {/* Hamburger button for mobile */}
@@ -103,8 +104,11 @@ export default function Header({ openCart }) {
         </nav>
       </div>
       {/* Mobile menu */}
-      <div className={`${isOpen ? 'max-h-screen opacity-100' : 'hidden'
-        } lg:hidden fixed inset-0 bg-custom-gray overflow-hidden transition-all duration-500 ease-in-out z-40`}>
+      <div
+        className={`${
+          isOpen ? "max-h-screen opacity-100" : "hidden"
+        } lg:hidden fixed inset-0 bg-custom-gray overflow-hidden transition-all duration-500 ease-in-out z-40`}
+      >
         <div onClick={toggleMenu}>
           <div className="flex justify-end">
             <button

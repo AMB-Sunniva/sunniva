@@ -1,4 +1,5 @@
 import { useCart } from "@/app/context/CartContext";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "./Button";
 
@@ -10,6 +11,8 @@ const Cart = ({ isOpen, closeCart }) => {
     decreaseQuantity,
     getTotalPrice,
   } = useCart();
+
+  const router = useRouter();
 
   return (
     <div
@@ -90,7 +93,7 @@ const Cart = ({ isOpen, closeCart }) => {
               Total: ${getTotalPrice().toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
             <div className="flex justify-end">
-              <Button onClick={closeCart}>Checkout</Button>
+              <Button onClick={() => router.push("/checkout")}>Checkout</Button>
             </div>
           </div>
         )}

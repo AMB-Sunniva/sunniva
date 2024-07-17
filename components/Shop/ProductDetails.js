@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import { useCart } from "@/app/context/CartContext";
 import Button from "@/components/Button";
 import { formatCurrency } from "@/lib/utils";
 import { ToastContainer, toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
 
 const CollapsibleSection = ({ title, children }) => {
@@ -34,11 +36,11 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formattedPrice, setFormattedPrice] = useState(null);
-  const [selectedSize, setSelectedSize] = useState("");
-  const [attachedOrStandAlone, setAttachedOrStandAlone] = useState("");
-  const [endBoardDesign, setEndBoardDesign] = useState("");
-  const [lumberSize, setLumberSize] = useState("");
-  const [stainColor, setStainColor] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (product) {
@@ -73,28 +75,22 @@ const ProductDetails = () => {
 
   if (!product) return <p className="text-center">No product found</p>;
 
-  const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
-  };
+  const onSubmit = (data) => {
+    const productWithOptions = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      images: product.images,
+      selectedOptions: {
+        selectedSize: data.selectedSize,
+        attachedOrStandAlone: data.attachedOrStandAlone,
+        endBoardDesign: data.endBoardDesign,
+        lumberSize: data.lumberSize,
+        stainColor: data.stainColor,
+      },
+    };
 
-  const handleAttachedOrStandAloneChange = (event) => {
-    setAttachedOrStandAlone(event.target.value);
-  };
-
-  const handleEndBoardDesignChange = (event) => {
-    setEndBoardDesign(event.target.value);
-  };
-
-  const handleLumberSizeChange = (event) => {
-    setLumberSize(event.target.value);
-  };
-
-  const handleStainColorChange = (event) => {
-    setStainColor(event.target.value);
-  };
-
-  const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(productWithOptions);
     toast.success("Product added to cart!", {
       position: "top-right",
       autoClose: 3000,
@@ -115,14 +111,15 @@ const ProductDetails = () => {
               <Image
                 src={product.images[0]}
                 alt={product.name}
-                layout="fill"
+                fill
                 className="object-cover"
+                priority
               />
               {product.images.length > 1 && (
                 <Image
                   src={product.images[1]}
                   alt={product.name}
-                  layout="fill"
+                  fill
                   className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
               )}
@@ -145,128 +142,165 @@ const ProductDetails = () => {
             </p>
           </div>
 
-          <hr className="my-4" />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <hr className="my-4" />
 
-          <div className="mb-4">
-            <label
-              htmlFor="size"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Select Size:
-            </label>
-            <select
-              id="size"
-              value={selectedSize}
-              onChange={handleSizeChange}
-              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              {product.sizes.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="selectedSize"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Select Size:
+              </label>
+              <select
+                id="selectedSize"
+                {...register("selectedSize", {
+                  required: "Please select a size.",
+                })}
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="">Select size</option>
+                {product.sizes.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+              {errors.selectedSize && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.selectedSize.message}
+                </p>
+              )}
+            </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="mb-4">
-            <label
-              htmlFor="attachedOrStandAlone"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Attached or Stand Alone:
-            </label>
-            <select
-              id="attachedOrStandAlone"
-              value={attachedOrStandAlone}
-              onChange={handleAttachedOrStandAloneChange}
-              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="Attached">Attached</option>
-              <option value="Stand Alone">Stand Alone</option>
-            </select>
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="attachedOrStandAlone"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Attached or Stand Alone:
+              </label>
+              <select
+                id="attachedOrStandAlone"
+                {...register("attachedOrStandAlone", {
+                  required: "Please select an option.",
+                })}
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="">Select option</option>
+                <option value="Attached">Attached</option>
+                <option value="Stand Alone">Stand Alone</option>
+              </select>
+              {errors.attachedOrStandAlone && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.attachedOrStandAlone.message}
+                </p>
+              )}
+            </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="mb-4">
-            <label
-              htmlFor="endBoardDesign"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              End Board Design:
-            </label>
-            <select
-              id="endBoardDesign"
-              value={endBoardDesign}
-              onChange={handleEndBoardDesignChange}
-              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              {product.endBoardDesigns.map((design) => (
-                <option key={design} value={design}>
-                  {design}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="endBoardDesign"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                End Board Design:
+              </label>
+              <select
+                id="endBoardDesign"
+                {...register("endBoardDesign", {
+                  required: "Please select an end board design.",
+                })}
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="">Select design</option>
+                {product.endBoardDesigns.map((design) => (
+                  <option key={design} value={design}>
+                    {design}
+                  </option>
+                ))}
+              </select>
+              {errors.endBoardDesign && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.endBoardDesign.message}
+                </p>
+              )}
+            </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="mb-4">
-            <label
-              htmlFor="lumberSize"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Lumber Size:
-            </label>
-            <select
-              id="lumberSize"
-              value={lumberSize}
-              onChange={handleLumberSizeChange}
-              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              {product.lumberSizes.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="lumberSize"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Lumber Size:
+              </label>
+              <select
+                id="lumberSize"
+                {...register("lumberSize", {
+                  required: "Please select a lumber size.",
+                })}
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="">Select lumber size</option>
+                {product.lumberSizes.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+              {errors.lumberSize && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.lumberSize.message}
+                </p>
+              )}
+            </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="mb-4">
-            <label
-              htmlFor="stainColor"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Stain Color:
-            </label>
-            <select
-              id="stainColor"
-              value={stainColor}
-              onChange={handleStainColorChange}
-              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              {product.stainColors.map((color) => (
-                <option key={color} value={color}>
-                  {color}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="stainColor"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Stain Color:
+              </label>
+              <select
+                id="stainColor"
+                {...register("stainColor", {
+                  required: "Please select a stain color.",
+                })}
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="">Select stain color</option>
+                {product.stainColors.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+              {errors.stainColor && (
+                <p className="text-red-500 text-sm mt-2">
+                  {errors.stainColor.message}
+                </p>
+              )}
+            </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <Button type="primary" onClick={handleAddToCart}>
-            Add to Cart
-          </Button>
+            <Button type="primary" submit>
+              Add to Cart
+            </Button>
+          </form>
 
           <CollapsibleSection title="Product Info">
             <p>
               {`Tailored to your needs, our solar + shade systems are available in a range of sizes, ensuring a perfect fit for any outdoor space. 
-    From cozy retreats to expansive landscapes, our systems provide varying energy generation capacities to match your unique requirements while keeping you shaded and energy-efficient.`}
+              From cozy retreats to expansive landscapes, our systems provide varying energy generation capacities to match your unique requirements while keeping you shaded and energy-efficient.`}
             </p>
             <table className="table-auto w-full text-left mt-4">
               <thead>
