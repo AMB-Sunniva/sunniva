@@ -36,9 +36,9 @@ const ProductCard = ({ product, onDelete }) => {
         <h3 className="text-lg font-semibold mb-2 mt-4 text-custom-gray">
           {product.name}
         </h3>
-        <p className="text-gray-700">${product.price}</p>
+        <p className="text-custom-gray">${product.price}</p>
       </Link>
-      {auth.currentUser ? (
+      {auth.currentUser && (
         <>
           <Link href={`/admin/shop/${product.id}`}>
             <Button>Edit Product</Button>
@@ -50,10 +50,6 @@ const ProductCard = ({ product, onDelete }) => {
             <FiTrash2 size={16} />
           </button>
         </>
-      ) : (
-        <Button type="primary" onClick={() => addToCart(product)}>
-          Add to Cart
-        </Button>
       )}
       <p className="text-gray-400 mb-2">
         {"Excluding Sales Tax | Shipping Information"}

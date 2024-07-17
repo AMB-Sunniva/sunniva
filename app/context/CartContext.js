@@ -3,8 +3,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, openCart }) => {
   const [cart, setCart] = useState([]);
+
 
   useEffect(() => {
     console.log(cart);
@@ -28,6 +29,7 @@ export const CartProvider = ({ children }) => {
       }
     });
   };
+
 
   const removeFromCart = (itemId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));

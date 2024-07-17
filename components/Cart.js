@@ -61,34 +61,36 @@ const Cart = ({ isOpen, closeCart }) => {
                   />
                   <div>
                     <h3 className="text-lg font-semibold">{item.name}</h3>
-                    <p className="text-gray-600">${item.price}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <button
-                      onClick={() => decreaseQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 text-gray-700 rounded-md"
-                    >
-                      -
-                    </button>
-                    <span className="mx-2">{item.quantity}</span>
-                    <button
-                      onClick={() => increaseQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 text-gray-700 rounded-md"
-                    >
-                      +
-                    </button>
+                    <div className="flex items-center pt-1">
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="text-gray-700"
+                      >
+                        -
+                      </button>
+                      <span className="mx-2 border border-gray-700 px-4">{item.quantity}</span>
+                      <button
+                        onClick={() => increaseQuantity(item.id)}
+                        className="text-gray-700"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-red-500 hover:text-red-700 focus:outline-none"
-                >
-                  Remove
-                </button>
+                <div className="flex flex-col items-end pl-4">
+                  <p className="text-custom-gray font-semibold">${item.price}</p>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-custom-blue hover:text-red-700 focus:outline-none pt-2 text-xs"
+                  >
+                    REMOVE
+                  </button>
+                </div>
               </div>
             ))}
             <div className="flex justify-end font-bold text-xl">
-              Total: ${getTotalPrice().toFixed(2)}
+              Total: ${getTotalPrice().toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
             <div className="flex justify-end">
               <Button onClick={() => router.push("/checkout")}>Checkout</Button>

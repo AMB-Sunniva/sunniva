@@ -26,7 +26,7 @@ export default function Layout({ children }) {
       <body>
         <AuthProvider>
           <FirestoreProvider>
-            <CartProvider>
+            <CartProvider openCart={openCart}>
               <Header openCart={openCart} />
               <CustomToastContainer />
               <main>{children}</main>
