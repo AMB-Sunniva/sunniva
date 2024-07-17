@@ -168,14 +168,14 @@ const EditProduct = () => {
                 <Image
                   src={images[0]}
                   alt={product.productName}
-                  layout="fill"
+                  fill
                   className="object-cover"
                 />
                 {images.length > 1 && (
                   <Image
                     src={images[1]}
                     alt={product.productName}
-                    layout="fill"
+                    fill
                     className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 )}

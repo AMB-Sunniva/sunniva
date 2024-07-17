@@ -1,10 +1,15 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const LandingPage = () => {
   return (
-    <div style={{height: '100vh'}}>
-      <Image src='/images/picTen.jpeg' alt='Solar' layout="fill" objectFit="cover" />
+    <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+      <Image
+        src="/images/picTen.jpeg"
+        alt="Solar"
+        fill
+        style={{ objectFit: "cover" }}
+      />
     </div>
   );
 };

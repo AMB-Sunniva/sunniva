@@ -1,42 +1,32 @@
 "use client";
+import { useForm } from "react-hook-form";
 import styles from "./RequestQuote.module.css";
-import { useState } from "react";
 
 const RequestQuote = () => {
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    message: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm();
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const onSubmit = async (data) => {
+    try {
+      // Send email with form data
+      await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      reset();
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setSubmitted(true);
-    setFormData({
-      company: "",
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      message: "",
-    });
-  };
-
-  if (submitted) {
+  if (isSubmitSuccessful) {
     return <p>Thank you for contacting us!</p>;
   }
 
@@ -49,7 +39,7 @@ const RequestQuote = () => {
           />
           <h1>REQUEST A QUOTE</h1>
         </div>
-        <form onSubmit={handleSubmit} className={styles.formStyle}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
           <div className={styles.formGroupStyle}>
             <label htmlFor="name"></label>
             <input
@@ -57,11 +47,12 @@ const RequestQuote = () => {
               id="name"
               name="name"
               placeholder="NAME"
-              value={formData.name}
-              onChange={handleChange}
-              required
+              {...register("name", { required: "Name is required" })}
               className={styles.inputStyle}
             />
+            {errors.name && (
+              <p className="text-red-500">{errors.name.message}</p>
+            )}
           </div>
           <div className={styles.formGroupStyle}>
             <label htmlFor="email"></label>
@@ -70,11 +61,12 @@ const RequestQuote = () => {
               id="email"
               name="email"
               placeholder="EMAIL"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              {...register("email", { required: "Email is required" })}
               className={styles.inputStyle}
             />
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </div>
           <div className={styles.formGroupStyle}>
             <label htmlFor="phone"></label>
@@ -83,11 +75,12 @@ const RequestQuote = () => {
               id="phone"
               name="phone"
               placeholder="PHONE"
-              value={formData.phone}
-              onChange={handleChange}
-              required
+              {...register("phone", { required: "Phone number is required" })}
               className={styles.inputStyle}
             />
+            {errors.phone && (
+              <p className="text-red-500">{errors.phone.message}</p>
+            )}
           </div>
           <div className={styles.formGroupStyle}>
             <label htmlFor="address"></label>
@@ -96,25 +89,37 @@ const RequestQuote = () => {
               id="address"
               name="address"
               placeholder="ADDRESS"
-              value={formData.address}
-              onChange={handleChange}
-              required
+              {...register("address", { required: "Address is required" })}
               className={styles.inputStyle}
             />
+            {errors.address && (
+              <p className="text-red-500">{errors.address.message}</p>
+            )}
           </div>
           <div className={styles.formGroupStyle}>
             <label htmlFor="system"></label>
-            <select id="system" name="system" className={styles.inputStyle}>
-              <option value="" disabled selected>
+            <select
+              id="system"
+              name="system"
+              defaultValue=""
+              {...register("system", { required: "System is required" })}
+              className={styles.inputStyle}
+            >
+              <option value="" disabled>
                 SYSTEM
               </option>
-              <option value="option1">Solar + Shade</option>
-              <option value="option2">Just Solar</option>
-              <option value="option3">Just Shade</option>
-              <option value="option3">EV Charger or Smart Panel</option>
-              <option value="option3">DIY Kit</option>
-              <option value="option3">Other</option>
+              <option value="Solar + Shade">Solar + Shade</option>
+              <option value="Just Solar">Just Solar</option>
+              <option value="Just Shade">Just Shade</option>
+              <option value="EV Charger or Smart Panel">
+                EV Charger or Smart Panel
+              </option>
+              <option value="DIY Kit">DIY Kit</option>
+              <option value="Other">Other</option>
             </select>
+            {errors.system && (
+              <p className="text-red-500">{errors.system.message}</p>
+            )}
           </div>
           <div className={styles.formGroupStyle}>
             <label htmlFor="message"></label>
@@ -122,11 +127,12 @@ const RequestQuote = () => {
               id="message"
               name="message"
               placeholder="Leave us a message..."
-              value={formData.message}
-              onChange={handleChange}
-              required
+              {...register("message", { required: "Message is required" })}
               className={styles.inputStyle}
             />
+            {errors.message && (
+              <p className="text-red-500">{errors.message.message}</p>
+            )}
           </div>
           <button type="submit" className={styles.button}>
             SUBMIT
