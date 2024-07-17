@@ -108,10 +108,7 @@ const ProductDetails = () => {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-center">Product Details</h1>
-      </div>
-      <div className="flex flex-col md:flex-row items-start justify-center">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center">
         <div className="flex flex-col items-center mb-4 md:mb-0 md:mr-8">
           {product.images.length > 0 && (
             <div className="relative group mb-4 w-[400px] h-[400px]">

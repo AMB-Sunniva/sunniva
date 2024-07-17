@@ -3,10 +3,10 @@ import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, openCart }) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (item) => {
+  const addToCart = (item) => { 
     setCart(prevCart => {
         const itemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
         if (itemIndex > -1) {
@@ -21,7 +21,8 @@ export const CartProvider = ({ children }) => {
           return [...prevCart, { ...item, quantity: 1 }];
         }
       });
-  };
+      openCart();
+    };
 
   const removeFromCart = (itemId) => {
     setCart(prevCart => prevCart.filter(item => item.id !== itemId));

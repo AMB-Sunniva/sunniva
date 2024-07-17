@@ -11,12 +11,12 @@ export default function HomePage() {
       <LandingPage />
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} />
+            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4'/>
         </div>
         <div>
           <div className={styles.title}>
             <hr className={styles.customHr} />
-            <h1>STUNNING BACKYARD SHADE STRUCTURES</h1>
+            <h1 className='text-4xl tracking-wide font-light text-center md:text-left'>STUNNING BACKYARD SHADE STRUCTURES</h1>
           </div>
           <div className={styles.aboutSection}>
             <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>

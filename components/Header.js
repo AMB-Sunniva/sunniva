@@ -20,7 +20,7 @@ export default function Header({ openCart }) {
   };
 
   return (
-    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 ${isOpen ? '' : 'backdrop-blur'}`}>
+    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${isOpen ? '' : 'backdrop-blur'}`}>
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -28,16 +28,16 @@ export default function Header({ openCart }) {
             alt="Sunniva"
             width={100}
             height={100}
-            className="w-fulllg:w-1/2 md:w-1/3 sm:w-1/4"
+            className="w-1/4"
           />
         </div>
         {/* Hamburger button for mobile */}
         <div className="lg:hidden flex">
           <div className="relative mx-5 my-3">
             <button onClick={openCart}>
-              <CiShoppingCart size="2.5em" />
+              <CiShoppingCart className="w-8 h-8"  />
               {totalItemsInCart > 0 && (
-                <span className="bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1 absolute -top-1 -right-1 transform translate-x-1/4 -translate-y-1/8">
+                <span className="absolute top-0 -right-1 inline-flex items-center justify-center h-4 w-4 rounded-full bg-red-500 text-white text-xs">
                   {totalItemsInCart}
                 </span>
               )}
@@ -92,9 +92,9 @@ export default function Header({ openCart }) {
           </Link>
           <div className="relative">
             <button onClick={openCart}>
-              <CiShoppingCart size="2.5em" />
+              <CiShoppingCart className="w-6 h-6 xl:w-7 xl:h-7" />
               {totalItemsInCart > 0 && (
-                <span className="bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1 absolute -top-1 -right-1 transform translate-x-1/4 -translate-y-1/8">
+                <span className="absolute top-0 -right-1 inline-flex items-center justify-center h-4 w-4 rounded-full bg-red-500 text-white text-xs">
                   {totalItemsInCart}
                 </span>
               )}
