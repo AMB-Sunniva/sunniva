@@ -79,7 +79,7 @@ const CheckoutForm = () => {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-4xl font-bold">
-          Oops! There's nothing in your cart.
+          {`Oops! There's nothing in your cart.`}
         </h1>
         <button
           onClick={() => router.push("/shop")}
