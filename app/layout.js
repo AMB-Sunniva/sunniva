@@ -3,18 +3,26 @@ import "./globals.css";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import CustomToastContainer from "../components/Toast/CustomToastContainer";
+// import CustomToastContainer from "../components/Toast/CustomToastContainer";
 import { AuthProvider } from "./context/AuthContext";
 import { FirestoreProvider } from "./context/FirestoreContext";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider, useCart } from "./context/CartContext";
 import Cart from "@/components/Cart";
 
-export default function Layout({ children }) {
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
-
+const InnerLayout = ({ children }) => {
+  const { isCartOpen, closeCart } = useCart();
+  return (
+    <>
+      <Header />
+      {/* <CustomToastContainer /> */}
+      <main>{children}</main>
+      <Footer />
+      <Cart isCartOpen={isCartOpen} closeCart={closeCart} />
+    </>
+  );
+};
+const Layout = ({ children }) => {  
   return (
     <html lang="en">
       <head>
@@ -26,12 +34,8 @@ export default function Layout({ children }) {
       <body>
         <AuthProvider>
           <FirestoreProvider>
-            <CartProvider openCart={openCart}>
-              <Header openCart={openCart} />
-              <CustomToastContainer />
-              <main>{children}</main>
-              <Cart isOpen={isCartOpen} closeCart={closeCart} />
-              <Footer />
+            <CartProvider>
+             <InnerLayout>{children}</InnerLayout>
             </CartProvider>
           </FirestoreProvider>
         </AuthProvider>
@@ -39,3 +43,5 @@ export default function Layout({ children }) {
     </html>
   );
 }
+
+export default Layout;

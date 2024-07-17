@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { db } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -11,6 +11,18 @@ import { formatCurrency } from "@/lib/utils";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
+
+const endShapes = [
+  {id: 1, src: '/images/EndShape1.jpg', alt: 'End Shape 1'},
+  {id: 2, src: '/images/EndShape2.jpg', alt: 'End Shape 2'},
+  {id: 3, src: '/images/EndShape3.jpg', alt: 'End Shape 3'},
+  {id: 4, src: '/images/EndShape4.jpg', alt: 'End Shape 4'},
+  {id: 5, src: '/images/EndShape5.jpg', alt: 'End Shape 5'},
+  {id: 6, src: '/images/EndShape6.jpg', alt: 'End Shape 6'},
+  {id: 7, src: '/images/EndShape7.jpg', alt: 'End Shape 7'},
+  {id: 8, src: '/images/EndShape8.jpg', alt: 'End Shape 8'},
+]
 
 const CollapsibleSection = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +30,7 @@ const CollapsibleSection = ({ title, children }) => {
   return (
     <div className="mb-4">
       <button
-        className="w-full text-left text-xl font-bold text-gray-700 mb-2 focus:outline-none"
+        className="w-full text-left text-xl font-bold text-gray-700 mb-2 focus:outline-none hover:underline"
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
@@ -41,6 +53,8 @@ const ProductDetails = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
+
 
   useEffect(() => {
     if (product) {
@@ -92,7 +106,7 @@ const ProductDetails = () => {
 
     addToCart(productWithOptions);
     toast.success("Product added to cart!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -102,10 +116,22 @@ const ProductDetails = () => {
     });
   };
 
+  const handleBackToProducts = () => {
+    router.push("/shop");
+  };
+
   return (
     <div className="container mx-auto py-8 px-4">
+      <button
+        onClick={handleBackToProducts}
+        type="button"
+        className="text-custom-blue bg-white hover:underline flex items-center justify-center pb-6"
+      >
+        <IoIosArrowRoundBack size="1.5em" />
+        Back to Products
+      </button>
       <div className="flex flex-col md:flex-row items-center md:items-start justify-center">
-        <div className="flex flex-col items-center mb-4 md:mb-0 md:mr-8">
+        <div className="flex flex-col items-center mb-6 pr-0 md:pr-12">
           {product.images.length > 0 && (
             <div className="relative group mb-4 w-[400px] h-[400px]">
               <Image
@@ -208,6 +234,20 @@ const ProductDetails = () => {
                 className="block text-gray-700 font-bold mb-2"
               >
                 End Board Design:
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  {endShapes.map((image, index) => (
+                    <div key={image.id} className="relative w-20 h-20">
+                       <span className="absolute top-4 left-2 text-white p-1 z-10">{String.fromCharCode(65 + index)}</span>
+                      <Image
+                      src={image.src}
+                      alt={image.alt}
+                      layout="fill"
+                      objectFit="cover"
+                      className="mb-4"
+                      />
+                      </div>
+                  ))}
+                </div>
               </label>
               <select
                 id="endBoardDesign"

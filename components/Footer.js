@@ -16,7 +16,6 @@ const Footer = () => {
           alt="Sunniva"
           width={200}
           height={100}
-          style={{ width: "100%", height: "auto" }}
           priority
         />
         <div className={styles.links}>

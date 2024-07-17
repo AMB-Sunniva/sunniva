@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "./Button";
 
-const Cart = ({ isOpen, closeCart }) => {
+const Cart = ({ isCartOpen, closeCart }) => {
   const {
     cart,
     removeFromCart,
@@ -17,7 +17,7 @@ const Cart = ({ isOpen, closeCart }) => {
   return (
     <div
       className={`fixed right-0 top-0 h-full w-full md:w-38rem bg-white shadow-lg z-50 transform ${
-        isOpen ? "translate-x-0" : "translate-x-full"
+        isCartOpen ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-300 ease-in-out`}
     >
       <div className="flex justify-between items-center p-4 border-b">
