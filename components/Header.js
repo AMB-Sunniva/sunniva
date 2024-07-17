@@ -5,9 +5,9 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 
-export default function Header({ openCart }) {
-  const { cart } = useCart();
-  const [isOpen, setIsOpen] = useState(false);
+export default function Header({ }) {
+  const { cart, openCart } = useCart();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const auth = useAuth();
 
@@ -16,11 +16,11 @@ export default function Header({ openCart }) {
   }, 0);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${isOpen ? '' : 'backdrop-blur'}`}>
+    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${isMenuOpen ? '' : 'backdrop-blur'}`}>
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -50,7 +50,7 @@ export default function Header({ openCart }) {
             className="text-white hover:text-gray-400 focus:text-gray-400 focus:outline-none"
           >
             <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
-              {isOpen ? (
+              {isMenuOpen ? (
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -106,7 +106,7 @@ export default function Header({ openCart }) {
       {/* Mobile menu */}
       <div
         className={`${
-          isOpen ? "max-h-screen opacity-100" : "hidden"
+            isMenuOpen ? "block" : "hidden"
         } lg:hidden fixed inset-0 bg-custom-gray overflow-hidden transition-all duration-500 ease-in-out z-40`}
       >
         <div onClick={toggleMenu}>

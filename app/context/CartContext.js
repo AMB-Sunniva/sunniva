@@ -3,12 +3,29 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children, openCart }) => {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
-    console.log(cart);
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+        setCart(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0){
+        localStorage.setItem('cartItems', JSON.stringify(cart));
+        console.log(cart);
+    } else {
+        localStorage.removeItem('cartItems');
+    }
   }, [cart]);
+
 
   const addToCart = (item) => {
     setCart((prevCart) => {
@@ -27,6 +44,7 @@ export const CartProvider = ({ children, openCart }) => {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
+    openCart();
   };
 
   const removeFromCart = (itemId) => {
@@ -70,6 +88,9 @@ export const CartProvider = ({ children, openCart }) => {
         increaseQuantity,
         decreaseQuantity,
         getTotalPrice,
+        openCart,
+        closeCart,
+        isCartOpen,
       }}
     >
       {children}
