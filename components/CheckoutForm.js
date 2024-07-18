@@ -44,7 +44,7 @@ const CheckoutForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: convertToSubcurrency(totalPrice) }),
+        body: JSON.stringify({ amount: totalPrice }),
       })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret))

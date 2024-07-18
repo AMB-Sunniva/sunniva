@@ -19,8 +19,6 @@ export default function Header({}) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
   return (
     <header
       className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${
