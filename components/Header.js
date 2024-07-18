@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 
-export default function Header({ }) {
+export default function Header({}) {
   const { cart, openCart } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,8 +19,14 @@ export default function Header({ }) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
   return (
-    <header className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${isMenuOpen ? '' : 'backdrop-blur'}`}>
+    <header
+      className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${
+        isMenuOpen ? "" : "backdrop-blur"
+      }`}
+    >
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -36,7 +42,7 @@ export default function Header({ }) {
         <div className="lg:hidden flex">
           <div className="relative mx-5 my-3">
             <button onClick={openCart}>
-              <CiShoppingCart className="w-8 h-8"  />
+              <CiShoppingCart className="w-8 h-8" />
               {totalItemsInCart > 0 && (
                 <span className="absolute top-0 -right-1 inline-flex items-center justify-center h-4 w-4 rounded-full bg-red-500 text-white text-xs">
                   {totalItemsInCart}
@@ -106,7 +112,7 @@ export default function Header({ }) {
       {/* Mobile menu */}
       <div
         className={`${
-            isMenuOpen ? "block" : "hidden"
+          isMenuOpen ? "block" : "hidden"
         } lg:hidden fixed inset-0 bg-custom-gray overflow-hidden transition-all duration-500 ease-in-out z-40`}
       >
         <div onClick={toggleMenu}>

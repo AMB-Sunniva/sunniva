@@ -93,7 +93,8 @@ const CheckoutForm = () => {
           elements,
           clientSecret,
           confirmParams: {
-            return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
+            // return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
+            return_url: `sunnivasol.com/payment-success?amount=${totalPrice}`,
           },
         }
       );
