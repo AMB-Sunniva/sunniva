@@ -77,7 +77,10 @@ const ProductDetails = () => {
         } catch (error) {
           console.error("Error fetching product:", error);
         } finally {
-          setLoading(false);
+          const timer = setTimeout(() => {
+            setLoading(false);
+          }, 200);
+          return () => clearTimeout(timer);
         }
       };
 
@@ -85,7 +88,9 @@ const ProductDetails = () => {
     }
   }, [id]);
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <div className="fixed w-full h-full flex items-center justify-center bg-white z-50">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-custom-blue"></div>
+  </div>;
 
   if (!product) return <p className="text-center">No product found</p>;
 
