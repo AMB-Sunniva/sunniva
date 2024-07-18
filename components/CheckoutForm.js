@@ -36,52 +36,44 @@ const CheckoutForm = () => {
   } = useCart();
   const totalPrice = getTotalPrice().toFixed(2);
 
-  // useEffect(() => {
-  //   if (cart.length > 0 && totalPrice > 0) {
-  //     fetch("/api/create-payment-intent", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ amount: totalPrice }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => setClientSecret(data.clientSecret))
-  //       .catch((error) =>
-  //         console.error("Error creating payment intent:", error)
-  //       );
-  //   } else {
-  //     setClientSecret("");
-  //   }
-  // }, [totalPrice, cart.length]);
   useEffect(() => {
-    const createPaymentIntent = async () => {
-      try {
-        const response = await fetch("/api/create-payment-intent", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount: convertToSubcurrency(totalPrice) }),
-        });
+    if (cart.length > 0 && totalPrice > 0) {
+      const createPaymentIntent = async () => {
+        try {
+          const response = await fetch("/api/create-payment-intent/", {
+            // Note the trailing slash here
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ amount: convertToSubcurrency(totalPrice) }),
+          });
 
-        const data = await response.json();
-        console.log("Payment Intent Response: ", data);
-        setClientSecret(data.clientSecret);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
 
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to create payment intent");
+          const data = await response.json();
+          console.log("Payment Intent Response:", data);
+
+          if (data.error) {
+            throw new Error(data.error);
+          }
+
+          return data.clientSecret;
+        } catch (error) {
+          console.error("Error creating payment intent:", error);
+          setErrorMessage(error.message);
         }
+      };
 
-        return data;
-      } catch (error) {
-        console.error("Error creating payment intent:", error);
-        setErrorMessage(error.message);
-      }
-    };
-
-    createPaymentIntent();
-  }, []);
+      createPaymentIntent().then((clientSecret) => {
+        setClientSecret(clientSecret);
+      });
+    } else {
+      setClientSecret("");
+    }
+  }, [totalPrice, cart.length]);
 
   const onSubmit = async (data) => {
     setLoading(true);
