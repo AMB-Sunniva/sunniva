@@ -6,13 +6,12 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
-import Image from "next/image";
-import convertToSubcurrency from "@/lib/utils";
-import { useCart } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
-import { db } from "@/firebase"; // Make sure to import your Firestore instance
-import { collection, addDoc } from "firebase/firestore"; // Import necessary Firestore methods
-import { useForm } from "react-hook-form"; // Import react-hook-form
+import { db } from "@/firebase";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore"; // Import updateDoc
+import { useForm } from "react-hook-form";
+import { useCart } from "@/app/context/CartContext";
+import convertToSubcurrency from "@/lib/utils";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -22,7 +21,7 @@ const CheckoutForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(); // Initialize useForm
+  } = useForm();
   const [errorMessage, setErrorMessage] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
@@ -74,42 +73,54 @@ const CheckoutForm = () => {
 
     const orderData = {
       ...data,
-      cart,
-      totalPrice,
+      cart: cart.map(({ images, ...rest }) => rest),
+      totalPrice: parseFloat(totalPrice),
+      paymentStatus: "pending",
     };
 
-    const { error: submitError } = await elements.submit();
+    let orderDocRef;
 
-    if (submitError) {
-      setErrorMessage(submitError.message);
-      setLoading(false);
-      return;
-    }
-
-    // const { error } = await stripe.confirmPayment({
-    //   elements,
-    //   clientSecret,
-    //   confirmParams: {
-    //     return_url: `http://www.localhost:3000/payment-success?amount=${totalPrice}`,
-    //   },
-    // });
-
-    // if (error) {
-    //   setErrorMessage(error.message);
-    // } else {
-    setErrorMessage("");
-
-    // Save order to Firestore
     try {
-      // await addDoc(collection(db, "orders"), orderData);
-      console.log("Order saved to Firestore:", orderData);
-    } catch (error) {
-      console.error("Error saving order to Firestore:", error);
-    }
+      orderDocRef = await addDoc(collection(db, "orders"), orderData);
 
-    // Redirect to success page
-    router.push(`/payment-success?amount=${totalPrice}`);
-    // }
+      const { error: submitError } = await elements.submit();
+      if (submitError) {
+        throw new Error(submitError.message);
+      }
+
+      const { error: stripeError, paymentIntent } = await stripe.confirmPayment(
+        {
+          elements,
+          clientSecret,
+          confirmParams: {
+            return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
+          },
+        }
+      );
+
+      if (stripeError) {
+        throw new Error(stripeError.message);
+      }
+
+      // Update order status to 'paid' in Firestore
+      await updateDoc(doc(db, "orders", orderDocRef.id), {
+        paymentStatus: "paid",
+      });
+
+      // If everything is successful
+      setErrorMessage("");
+      router.push(`/payment-success?amount=${totalPrice}`);
+    } catch (error) {
+      console.error("Error during checkout process:", error);
+      setErrorMessage(error.message);
+
+      if (orderDocRef) {
+        // Update order status to 'failed' in Firestore
+        await updateDoc(doc(db, "orders", orderDocRef.id), {
+          paymentStatus: "failed",
+        });
+      }
+    }
 
     setLoading(false);
   };
@@ -141,13 +152,6 @@ const CheckoutForm = () => {
           {cart.map((item, index) => (
             <div key={index} className="mb-4">
               <div className="flex items-center">
-                <Image
-                  src={item.images[0]}
-                  width={64}
-                  height={64}
-                  alt={item.name}
-                  className="w-16 h-16 object-cover rounded-md mr-4"
-                />
                 <div className="flex-1">
                   <h3 className="text-lg font-bold">{item.name}</h3>
                   <p className="text-gray-600">

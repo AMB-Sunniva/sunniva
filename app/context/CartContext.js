@@ -11,21 +11,19 @@ export const CartProvider = ({ children }) => {
   const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem('cartItems');
+    const storedCartItems = localStorage.getItem("cartItems");
     if (storedCartItems) {
-        setCart(JSON.parse(storedCartItems));
+      setCart(JSON.parse(storedCartItems));
     }
   }, []);
 
   useEffect(() => {
-    if (cart.length > 0){
-        localStorage.setItem('cartItems', JSON.stringify(cart));
-        console.log(cart);
+    if (cart.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cart));
     } else {
-        localStorage.removeItem('cartItems');
+      localStorage.removeItem("cartItems");
     }
   }, [cart]);
-
 
   const addToCart = (item) => {
     setCart((prevCart) => {
