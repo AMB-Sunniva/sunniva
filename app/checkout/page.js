@@ -10,6 +10,8 @@ import { useCart } from "../context/CartContext";
 
 if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
   throw new Error("Missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY");
+} else {
+  console.log("Stripe Key: ", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 }
 
 const stripePromise = loadStripe(
