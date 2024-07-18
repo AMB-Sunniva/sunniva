@@ -13,6 +13,7 @@ import {
 import { ref, deleteObject, listAll } from "firebase/storage";
 import ProductCard from "@/components/Shop/ProductCard";
 import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminShop() {
   const [products, setProducts] = useState([]);
