@@ -14,6 +14,7 @@ import { useCart } from "@/app/context/CartContext";
 import convertToSubcurrency from "@/lib/utils";
 
 const CheckoutForm = () => {
+  console.log("Checkout component rendered");
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
