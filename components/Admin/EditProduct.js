@@ -167,14 +167,14 @@ const EditProduct = () => {
               <div className="relative w-full h-full">
                 <Image
                   src={images[0]}
-                  alt={product.productName}
+                  alt={product.name}
                   fill
                   className="object-cover"
                 />
                 {images.length > 1 && (
                   <Image
                     src={images[1]}
-                    alt={product.productName}
+                    alt={product.name}
                     fill
                     className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
@@ -194,8 +194,8 @@ const EditProduct = () => {
             <h1 className="text-3xl font-bold mb-4 text-custom-gray">
               <input
                 type="text"
-                name="productName"
-                value={product.productName}
+                name="name"
+                value={product.name}
                 onChange={handleFieldChange}
                 className="w-full text-3xl font-bold mb-4"
               />

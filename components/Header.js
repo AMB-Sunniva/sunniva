@@ -4,12 +4,14 @@ import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function Header({}) {
   const { cart, openCart } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const auth = useAuth();
+  const router = useRouter();
 
   const totalItemsInCart = cart.reduce((acc, item) => {
     return acc + item.quantity;
@@ -19,6 +21,10 @@ export default function Header({}) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleImageClick = () => {
+    router.push('/');
+  };
+
   return (
     <header
       className={`bg-bg-gray text-white fixed w-full top-0 shadow-md z-30 text-sm whitespace-nowrap ${
@@ -26,13 +32,12 @@ export default function Header({}) {
       }`}
     >
       <div className="mx-auto my-0 px-4 sm:px-6 lg:px-20 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center cursor-pointer" onClick={handleImageClick}>
           <Image
             src="/images/whiteLogo.png"
             alt="Sunniva"
-            width={100}
+            width={150}
             height={100}
-            className="w-1/4"
             priority
           />
         </div>
