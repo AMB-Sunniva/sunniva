@@ -14,15 +14,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 const endShapes = [
-  {id: 1, src: '/images/EndShape1.jpg', alt: 'End Shape 1'},
-  {id: 2, src: '/images/EndShape2.jpg', alt: 'End Shape 2'},
-  {id: 3, src: '/images/EndShape3.jpg', alt: 'End Shape 3'},
-  {id: 4, src: '/images/EndShape4.jpg', alt: 'End Shape 4'},
-  {id: 5, src: '/images/EndShape5.jpg', alt: 'End Shape 5'},
-  {id: 6, src: '/images/EndShape6.jpg', alt: 'End Shape 6'},
-  {id: 7, src: '/images/EndShape7.jpg', alt: 'End Shape 7'},
-  {id: 8, src: '/images/EndShape8.jpg', alt: 'End Shape 8'},
-]
+  { id: 1, src: "/images/EndShape1.jpg", alt: "End Shape 1" },
+  { id: 2, src: "/images/EndShape2.jpg", alt: "End Shape 2" },
+  { id: 3, src: "/images/EndShape3.jpg", alt: "End Shape 3" },
+  { id: 4, src: "/images/EndShape4.jpg", alt: "End Shape 4" },
+  { id: 5, src: "/images/EndShape5.jpg", alt: "End Shape 5" },
+  { id: 6, src: "/images/EndShape6.jpg", alt: "End Shape 6" },
+  { id: 7, src: "/images/EndShape7.jpg", alt: "End Shape 7" },
+  { id: 8, src: "/images/EndShape8.jpg", alt: "End Shape 8" },
+];
 
 const CollapsibleSection = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +54,6 @@ const ProductDetails = () => {
     formState: { errors },
   } = useForm();
   const router = useRouter();
-
 
   useEffect(() => {
     if (product) {
@@ -88,9 +87,12 @@ const ProductDetails = () => {
     }
   }, [id]);
 
-  if (loading) return <div className="fixed w-full h-full flex items-center justify-center bg-white z-50">
-    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-custom-blue"></div>
-  </div>;
+  if (loading)
+    return (
+      <div className="fixed w-full h-full flex items-center justify-center bg-white z-50">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-custom-blue"></div>
+      </div>
+    );
 
   if (!product) return <p className="text-center">No product found</p>;
 
@@ -110,15 +112,6 @@ const ProductDetails = () => {
     };
 
     addToCart(productWithOptions);
-    toast.success("Product added to cart!", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   const handleBackToProducts = () => {
@@ -242,15 +235,17 @@ const ProductDetails = () => {
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                   {endShapes.map((image, index) => (
                     <div key={image.id} className="relative w-20 h-20">
-                       <span className="absolute top-4 left-2 text-white p-1 z-10">{String.fromCharCode(65 + index)}</span>
+                      <span className="absolute top-4 left-2 text-white p-1 z-10">
+                        {String.fromCharCode(65 + index)}
+                      </span>
                       <Image
-                      src={image.src}
-                      alt={image.alt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="mb-4"
+                        src={image.src}
+                        alt={image.alt}
+                        layout="fill"
+                        objectFit="cover"
+                        className="mb-4"
                       />
-                      </div>
+                    </div>
                   ))}
                 </div>
               </label>
