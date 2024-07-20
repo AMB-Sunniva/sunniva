@@ -62,7 +62,7 @@ const CheckoutForm = () => {
 
           return data.clientSecret;
         } catch (error) {
-          console.error("Error creating payment intent:", error);
+          console.error("Error creating payment intent checkout form:", error);
           setErrorMessage(error.message);
         }
       };
