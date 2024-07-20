@@ -96,6 +96,7 @@ const CheckoutForm = () => {
       cart: cart.map(({ images, ...rest }) => rest),
       totalPrice: parseFloat(totalPrice),
       paymentStatus: "pending",
+      createdAt: new Date(),
     };
 
     let orderDocRef;
@@ -113,8 +114,8 @@ const CheckoutForm = () => {
           elements,
           clientSecret,
           confirmParams: {
-            // return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
-            return_url: `sunnivasol.com/payment-success?amount=${totalPrice}`,
+            return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
+            // return_url: `sunnivasol.com/payment-success?amount=${totalPrice}`,
           },
         }
       );

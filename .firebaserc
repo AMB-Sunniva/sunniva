@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "sunniva-ee7a7"
-  }
+    "default": "sunniva-ee7a7",
+    "sunniva": "sunniva-ee7a7"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
