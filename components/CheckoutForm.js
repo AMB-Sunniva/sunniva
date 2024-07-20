@@ -8,7 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase";
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore"; // Import updateDoc
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { useCart } from "@/app/context/CartContext";
 import convertToSubcurrency from "@/lib/utils";
@@ -44,7 +44,7 @@ const CheckoutForm = () => {
           const endpoint =
             apiUrl === "http://localhost:3000"
               ? "/api/create-payment-intent/"
-              : "https://us-central1-your-project-id.cloudfunctions.net/createPaymentIntent";
+              : "https://us-central1-sunniva-ee7a7.cloudfunctions.net/createPaymentIntent";
 
           const response = await fetch(endpoint, {
             method: "POST",
@@ -120,7 +120,6 @@ const CheckoutForm = () => {
           clientSecret,
           confirmParams: {
             return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
-            // return_url: `sunnivasol.com/payment-success?amount=${totalPrice}`,
           },
         }
       );
