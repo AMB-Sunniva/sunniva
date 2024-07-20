@@ -40,8 +40,13 @@ const CheckoutForm = () => {
     if (cart.length > 0 && totalPrice > 0) {
       const createPaymentIntent = async () => {
         try {
-          const response = await fetch("/api/create-payment-intent/", {
-            // Note the trailing slash here
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+          const endpoint =
+            apiUrl === "http://localhost:3000"
+              ? "/api/create-payment-intent/"
+              : "https://us-central1-your-project-id.cloudfunctions.net/createPaymentIntent";
+
+          const response = await fetch(endpoint, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
