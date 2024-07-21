@@ -13,6 +13,7 @@
     "@stripe/stripe-js": "^4.1.0",
     "anchor-pki": "^0.3.2",
     "body-parser": "^1.20.2",
+    "express": "^4.19.2",
     "firebase-admin": "^12.2.0",
     "firebaseui": "^6.1.0",
     "next": "^14.2.3",
