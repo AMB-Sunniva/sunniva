@@ -59,7 +59,6 @@ const CheckoutForm = () => {
           }
 
           const data = await response.json();
-          console.log("Payment Intent Response:", data);
 
           if (data.error) {
             throw new Error(data.error);
@@ -118,6 +117,7 @@ const CheckoutForm = () => {
         {
           elements,
           clientSecret,
+          handleActions: false,
           confirmParams: {
             return_url: `${window.location.origin}/payment-success?amount=${totalPrice}`,
           },
@@ -128,20 +128,17 @@ const CheckoutForm = () => {
         throw new Error(stripeError.message);
       }
 
-      // Update order status to 'paid' in Firestore
       await updateDoc(doc(db, "orders", orderDocRef.id), {
         paymentStatus: "paid",
+        stripeId: paymentIntent.id,
       });
 
-      // If everything is successful
-      setErrorMessage("");
       router.push(`/payment-success?amount=${totalPrice}`);
     } catch (error) {
       console.error("Error during checkout process:", error);
       setErrorMessage(error.message);
 
       if (orderDocRef) {
-        // Update order status to 'failed' in Firestore
         await updateDoc(doc(db, "orders", orderDocRef.id), {
           paymentStatus: "failed",
         });
