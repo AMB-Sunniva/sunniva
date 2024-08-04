@@ -133,6 +133,8 @@ const CheckoutForm = () => {
         stripeId: paymentIntent.id,
       });
 
+      clearCart();
+
       router.push(`/payment-success?amount=${totalPrice}`);
     } catch (error) {
       console.error("Error during checkout process:", error);
