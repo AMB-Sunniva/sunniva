@@ -107,16 +107,13 @@ const CheckoutForm = () => {
     let orderDocRef;
 
     try {
-      // Add order data to Firestore
       orderDocRef = await addDoc(collection(db, "orders"), orderData);
 
-      // Submit the payment
       const { error: submitError } = await elements.submit();
       if (submitError) {
         throw new Error(submitError.message);
       }
 
-      // Confirm the payment with Stripe
       const { error: stripeError, paymentIntent } = await stripe.confirmPayment(
         {
           elements,
@@ -132,7 +129,6 @@ const CheckoutForm = () => {
         throw new Error(stripeError.message);
       }
 
-      // Update Firestore order status
       await updateDoc(doc(db, "orders", orderDocRef.id), {
         paymentStatus: "paid",
         stripeId: paymentIntent.id,
@@ -173,7 +169,6 @@ const CheckoutForm = () => {
 
       router.push(`/payment-success?amount=${totalPrice}`);
     } catch (error) {
-      console.error("Error during checkout process:", error);
       setErrorMessage(error.message);
 
       if (orderDocRef) {
@@ -290,10 +285,9 @@ const CheckoutForm = () => {
           {currentSection === "shipping" && (
             <div className="accordion-body">
               <form
-                onSubmit={handleSubmit(onSubmit)} // Use handleSubmit from react-hook-form
+                onSubmit={handleSubmit(onSubmit)}
                 className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto"
               >
-                {/* Shipping info fields */}
                 <div className="mb-4">
                   <label className="block text-gray-700 font-bold mb-2">
                     Full Name
