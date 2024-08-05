@@ -14,7 +14,12 @@ const RequestQuote = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("/api/send-email", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const endpoint =
+        apiUrl === "http://localhost:3000"
+          ? "/api/send-email"
+          : "https://us-central1-sunniva-ee7a7.cloudfunctions.net/sendEmail";
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
