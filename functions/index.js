@@ -11,8 +11,10 @@ const endpointSecret = functions.config().stripe.webhook_secret;
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: functions.config().email.user,
-    pass: functions.config().email.pass,
+    // user: functions.config().email.user,
+    // pass: functions.config().email.pass,
+    user: functions.config().email.usertest,
+    pass: functions.config().email.passtest,
   },
 });
 
@@ -42,12 +44,50 @@ exports.createPaymentIntent = functions.https.onRequest((req, res) => {
   });
 });
 
+// Add the sendEmail function
+exports.sendEmail = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    if (req.method !== "POST") {
+      return res.status(405).send("Method Not Allowed");
+    }
+
+    try {
+      const { company, name, email, phone, address, message, system } =
+        req.body;
+
+      const mailOptions = {
+        // from: functions.config().email.user, // Use the email from config
+        from: functions.config().email.usertest, // Use the email from config
+        to: "dillon.craw@gmail.com",
+        subject: "New Quote Request",
+        text: `
+          Company: ${company}
+          Name: ${name}
+          Email: ${email}
+          Phone: ${phone}
+          Address: ${address}
+          System: ${system}
+          Message: ${message}
+        `,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully");
+      res.status(200).json({ message: "Email sent successfully" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      res.status(500).json({ message: "Error sending email", error });
+    }
+  });
+});
+
 const app = express();
 app.use(bodyParser.raw({ type: "application/json" }));
 
 async function sendConfirmationEmail(orderId, email) {
   const mailOptions = {
-    from: functions.config().email.user, // Use the email from config
+    // from: functions.config().email.user, // Use the email from config
+    from: functions.config().email.usertest, // Use the email from config
     to: email,
     subject: "Payment Confirmation",
     text: `Your payment for order ID ${orderId} was successful!`,
