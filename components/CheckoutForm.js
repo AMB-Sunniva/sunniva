@@ -145,21 +145,27 @@ const CheckoutForm = () => {
           ? "/api/order-confirmation"
           : "https://us-central1-sunniva-ee7a7.cloudfunctions.net/sendOrderConfirmation";
 
-      const confirmResponse = await fetch(confirmEndpoint, {
+      const sendConfirmationEmails = await fetch(confirmEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           orderId: orderDocRef.id,
+          address: data.address,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode,
+          fullName: data.fullName,
           email: data.email,
-          cartItems: orderData.cart,
+          phoneNumber: data.phoneNumber,
+          cart: orderData.cart,
           totalPrice: orderData.totalPrice,
-          name: data.fullName,
+          paymentStatus: "paid",
         }),
       });
 
-      if (!confirmResponse.ok) {
+      if (!sendConfirmationEmails.ok) {
         throw new Error("Failed to confirm order");
       }
 
