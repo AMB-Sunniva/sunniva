@@ -32,6 +32,7 @@ const CheckoutForm = () => {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
+    clearCart,
     getTotalPrice,
   } = useCart();
   const totalPrice = getTotalPrice().toFixed(2);
@@ -106,13 +107,16 @@ const CheckoutForm = () => {
     let orderDocRef;
 
     try {
+      // Add order data to Firestore
       orderDocRef = await addDoc(collection(db, "orders"), orderData);
 
+      // Submit the payment
       const { error: submitError } = await elements.submit();
       if (submitError) {
         throw new Error(submitError.message);
       }
 
+      // Confirm the payment with Stripe
       const { error: stripeError, paymentIntent } = await stripe.confirmPayment(
         {
           elements,
@@ -128,10 +132,36 @@ const CheckoutForm = () => {
         throw new Error(stripeError.message);
       }
 
+      // Update Firestore order status
       await updateDoc(doc(db, "orders", orderDocRef.id), {
         paymentStatus: "paid",
         stripeId: paymentIntent.id,
       });
+
+      // Confirm the order and send confirmation email
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const confirmEndpoint =
+        apiUrl === "http://localhost:3000"
+          ? "/api/order-confirmation"
+          : "https://us-central1-sunniva-ee7a7.cloudfunctions.net/sendOrderConfirmation";
+
+      const confirmResponse = await fetch(confirmEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId: orderDocRef.id,
+          email: data.email,
+          cartItems: orderData.cart,
+          totalPrice: orderData.totalPrice,
+          name: data.fullName,
+        }),
+      });
+
+      if (!confirmResponse.ok) {
+        throw new Error("Failed to confirm order");
+      }
 
       clearCart();
 

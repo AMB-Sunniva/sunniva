@@ -5,14 +5,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 
-const endpointSecret = functions.config().stripe.webhook_secret;
-
 // Configure nodemailer with environment variables
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    // user: functions.config().email.user,
-    // pass: functions.config().email.pass,
     user: functions.config().email.usertest,
     pass: functions.config().email.passtest,
   },
@@ -44,7 +40,7 @@ exports.createPaymentIntent = functions.https.onRequest((req, res) => {
   });
 });
 
-// Add the sendEmail function
+// Send Quote Request Email
 exports.sendEmail = functions.https.onRequest((req, res) => {
   cors(req, res, async () => {
     if (req.method !== "POST") {
@@ -56,7 +52,6 @@ exports.sendEmail = functions.https.onRequest((req, res) => {
         req.body;
 
       const mailOptions = {
-        // from: functions.config().email.user, // Use the email from config
         from: functions.config().email.usertest, // Use the email from config
         to: "dillon.craw@gmail.com",
         subject: "New Quote Request",
@@ -72,7 +67,6 @@ exports.sendEmail = functions.https.onRequest((req, res) => {
       };
 
       await transporter.sendMail(mailOptions);
-      console.log("Email sent successfully");
       res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
       console.error("Error sending email:", error);
@@ -81,74 +75,117 @@ exports.sendEmail = functions.https.onRequest((req, res) => {
   });
 });
 
-const app = express();
-app.use(bodyParser.raw({ type: "application/json" }));
+// Send Order Confirmation Email
+exports.sendOrderConfirmation = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    if (req.method !== "POST") {
+      return res.status(405).send("Method Not Allowed");
+    }
 
-async function sendConfirmationEmail(orderId, email) {
-  const mailOptions = {
-    // from: functions.config().email.user, // Use the email from config
-    from: functions.config().email.usertest, // Use the email from config
-    to: email,
-    subject: "Payment Confirmation",
-    text: `Your payment for order ID ${orderId} was successful!`,
-  };
+    try {
+      // Extracting order data from the request body
+      const {
+        address,
+        cart,
+        city,
+        email,
+        fullName,
+        phoneNumber,
+        state,
+        totalPrice,
+        zipCode,
+        paymentStatus,
+      } = req.body;
 
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log(`Confirmation email sent for Order ID ${orderId}`);
-  } catch (error) {
-    console.error(`Error sending confirmation email: ${error.message}`);
-  }
-}
+      // Format the order details for the customer's email
+      const customerHtmlContent = `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h2 style="color: #0066cc;">Thank You for Your Order, ${fullName}!</h2>
+          <p>We're excited to let you know that we've received your order and are preparing it for shipment. Here are your order details:</p>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Item</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Quantity</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Price</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${cart
+                .map(
+                  (item) => `
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">${item.name}</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">$${item.price}</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">
+                    Size: ${item.selectedOptions.selectedSize}<br/>
+                    Attached: ${item.selectedOptions.attachedOrStandAlone}<br/>
+                    End Board: ${item.selectedOptions.endBoardDesign}<br/>
+                    Lumber Size: ${item.selectedOptions.lumberSize}<br/>
+                    Stain Color: ${item.selectedOptions.stainColor}
+                  </td>
+                </tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>
+          <p style="margin-top: 20px;"><strong>Total Price: $${totalPrice.toFixed(
+            2
+          )}</strong></p>
+          <p>If you have any questions about your order, please feel free to contact us at <a href="mailto:office@sunnivasol.com">office@sunnivasol.com</a> or call us at <strong>970-759-5502</strong>.</p>
+          <p>Thank you for choosing Sunniva Solar!</p>
+        </div>
+      `;
 
-// Stripe webhook handler
-app.post("/webhook", (request, response) => {
-  const sig = request.headers["stripe-signature"];
-  const body = request.body;
-  let event;
+      // Format the order details for the admin email
+      const adminTextContent = `
+        New Order Received:
+        - Name: ${fullName}
+        - Email: ${email}
+        - Phone: ${phoneNumber}
+        - Address: ${address}, ${city}, ${state}, ${zipCode}
+        - Payment Status: ${paymentStatus}
+        - Order Details: 
+          ${cart
+            .map(
+              (item) =>
+                `${item.quantity}x ${item.name} @ $${
+                  item.price
+                } [Options: ${JSON.stringify(item.selectedOptions)}]`
+            )
+            .join("\n")}
+        - Total Price: $${totalPrice.toFixed(2)}
+      `;
 
-  try {
-    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-  } catch (err) {
-    console.log(`⚠️  Webhook signature verification failed.`, err);
-    return response.sendStatus(400);
-  }
+      // Send email to the customer
+      await transporter.sendMail({
+        from: functions.config().email.usertest,
+        to: email,
+        subject: "Your Order Confirmation - Sunniva Solar",
+        html: customerHtmlContent,
+      });
 
-  // Handle the event
-  let intent;
-  switch (event.type) {
-    case "payment_intent.succeeded":
-      const paymentIntent = event.data.object;
-      console.log(`PaymentIntent was successful!`, paymentIntent.id);
+      // Send email to yourself (admin)
+      await transporter.sendMail({
+        from: functions.config().email.usertest,
+        to: "dillon.craw@gmail.com",
+        subject: "New Order Received",
+        text: adminTextContent,
+      });
 
-      sendConfirmationEmail(
-        paymentIntent.metadata.orderId,
-        paymentIntent.metadata.email
-      );
-      break;
-    case "payment_method.automatically_updated":
-      intent = event.data.object;
-      console.log(`PaymentMethod was automatically updated!`, intent.id);
-      // Handle the event
-      break;
-    case "payment_intent.payment_failed":
-      const failedIntent = event.data.object;
-      const message =
-        failedIntent.last_payment_error &&
-        failedIntent.last_payment_error.message;
-      console.log("Failed:", failedIntent.id, message);
-
-      // Notify the customer of the failed payment
-      // await notifyCustomerOfFailedPayment(failedIntent.id, message);
-      // Optionally, log the error or take further action
-      // await logPaymentError(failedIntent.id, message);
-
-      break;
-    default:
-      console.log(`Unhandled event type ${event.type}`);
-  }
-
-  response.sendStatus(200);
+      res
+        .status(200)
+        .json({ message: "Order confirmation emails sent successfully" });
+    } catch (error) {
+      console.error("Error sending order confirmation email:", error);
+      res
+        .status(500)
+        .json({ message: "Error sending order confirmation email", error });
+    }
+  });
 });
 
-exports.stripeWebhook = functions.https.onRequest(app);
+const app = express();
+app.use(bodyParser.raw({ type: "application/json" }));
