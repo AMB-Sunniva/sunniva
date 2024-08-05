@@ -37,7 +37,7 @@ const RequestQuote = () => {
   return (
     <div className={styles.signUpSection}>
       <ToastContainer /> {/* Add the ToastContainer here */}
-      {!isSubmitSuccessful ? (
+      {isSubmitSuccessful ? (
         <p className="m-auto">
           Thank you for contacting us! We will be in touch with you as soon as
           possible.
