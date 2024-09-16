@@ -33,21 +33,65 @@
 .content {
     display: flex;
     align-items: center;
+    padding: 7rem;
 }
 
 .content h2 {
     margin: 0;
     padding: 5rem;
     color: #474949;
+    text-transform: uppercase;
 }
 
-.content p {
+.values {
     margin: 0;
-    padding: 7rem;
+    font-size: 1.2rem;
     color: #474949;
+    padding-top: 2rem;
+    text-align: left;
 }
 
+.content ul {
+    list-style-type: disc;
+    text-align: left;
+    font-size: 1.2rem;
+    color: #474949;
+    margin: 0;
+    font-weight: lighter;
+    list-style-position: inside;
+}
 
+.content span {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.content h4 {
+    font-weight: bold;
+    font-size: larger;
+    padding: 48px 0 8px;
+    text-decoration: underline;
+}
+
+.sustainability{
+    font-size: 1.2rem;
+    color: #474949;
+    padding-bottom: 0.9rem;
+}
+
+.content h3 {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #474949;
+    letter-spacing: 2px;
+}
+
+.closing{
+    font-size: 1.2rem;
+    color: #474949;
+    padding-top: 72px;
+}
 
 @media screen and (max-width: 1100px) {
     .whyDescription p {
@@ -68,6 +112,7 @@
 @media (max-width: 700px) {
     .content {
         flex-direction: column;
+        padding: 12px;
     }
     .container {
         padding: 24px;

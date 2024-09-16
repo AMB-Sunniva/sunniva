@@ -1,43 +1,95 @@
-.diySection {
+.customization {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #F0F0F0;
+    padding: 2rem 4rem;
 }
 
-.diySection p {
+.customization h1 {
+    font-size: 2.5rem;
+    color: #474949;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.customization p {
     font-size: 1.2em;
-    width: 35vw;
     text-align: center;
-    padding-bottom: 1.5em;
+    padding: 2rem 4rem;
     font-weight:lighter;
 }
 
-.diySection ul {
-    padding-bottom: 1.5em;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.3em;
+.customization ol {
+    padding-bottom: 2rem;
+    width: 60vw;
+    font-size: 1.2em;
     color: #474949;
+    list-style: decimal;
+    list-style-position: inside;
+}
+
+.customization div {
+    padding-bottom: 12px;
 }
 
 .container {
     background-color: #F0F0F0;
 }
 
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list ul {
+    padding: 12px;
+}
+
+.list li {
+    font-size: 1.2em;
+    font-weight: lighter;
+}
 .title {
     text-align: center;
     padding: 6rem 0 2rem;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title h1 {
     font-size: 2.5rem;
     color: #474949;
     letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.title p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 2rem;
+    width: 75%;
+    font-weight:lighter;
 }
 
 @media (max-width: 700px) {
-    .diySection p {
-        width: 75vw;
+    .customization {
+        padding: 1rem;
+    }
+
+    .customization p {
+        padding: 1rem;
+    }
+
+    .customization ol {
+        padding: 1rem;
+        width: 100vw;
+    }
+
+    .title p {
+        width: 100vw;
     }
 }

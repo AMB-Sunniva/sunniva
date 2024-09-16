@@ -1,25 +1,19 @@
 import styles from './page.module.css'
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
-import { PiLightbulbFilamentThin, PiStackSimpleThin, PiMoneyThin } from "react-icons/pi";
 import Button from '@/components/Button';
 import Image from 'next/image';
+import Carousel from '@/components/Carousel/Carousel'
 
 export default function HomePage() {
   return (
     <div>
       <LandingPage />
       <div className={styles.homePage}>
-        <div className={styles.logo}>
-            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4'/>
-        </div>
         <div>
-          <div className={styles.title}>
-            <hr className={styles.customHr} />
-            <h1 className='text-4xl tracking-wide font-light text-center md:text-left'>STUNNING BACKYARD SHADE STRUCTURES</h1>
-          </div>
-          <div className={styles.aboutSection}>
-            <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
+          <hr className={styles.customLine} />
+          <div className={styles.intro}>
+            <p>Transform your outdoor spaces with our easy-to-install, customizable solar shade structures. Enjoy sustainable living, quality craftsmanship, and beautiful designs that bring families together. Discover the Sunniva Solar difference today.</p>
             <Link href="/shop">
                 <Button type='bigPrimary'>SHOP NOW</Button>
             </Link>
@@ -27,40 +21,48 @@ export default function HomePage() {
         </div>
       </div>
       <div className={styles.overview}>
-        <div className={styles.overviewContent}>
-          <PiLightbulbFilamentThin size="5em" />
-            <h2>MICROINVERTERS</h2>
-            <p>We utilize microinverters to maximize the production of your system and offering you an easy and efficient way to track your production.</p>
-        </div>
-        <div className={styles.overviewContent}>
-          <PiStackSimpleThin size="5em" />
-            <h2>WARRANTY</h2>
-            <p>Our Products our backed by a 25 year warranty with a 10 year construction warranty.</p>
-        </div>
-        <div className={styles.overviewContent}>
-          <PiMoneyThin size="5em"  />
-            <h2>FEDERAL AND STATE TAX CREDIT</h2>
-            <p>There is a federal solar tax credit which offers you 30% of the cost of your system back. In Utah there is also a tax credit of $400.</p>
-        </div>
+     <Carousel/>
       </div>
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <Image src='/images/picFour.jpeg' alt='Sunniva' width={700} height={100}/>
+            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4 pb-4'/>
         </div>
         <div>
           <div className={styles.benefits}>
-            <h1>DUAL PURPOSE</h1>
+            <h1>Benefits</h1>
           </div>
           <div className={styles.aboutSection}>
-            <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
+            <div>
+              <p>
+              <span className='font-bold'>Sustainability:</span> Our solar shade structures harness renewable energy, reducing your carbon footprint and promoting a greener future
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className='font-bold'>DIY Friendly:</span> Our kits come with everything you need and are designed for simple, DIY assembly, giving you the freedom to create your perfect outdoor space
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className='font-bold'>High Quality Materials:</span> Crafted from durable, FSC-certified materials and high-efficiency solar panels, our structures ensure long-lasting performance and reliability 
+              </p>
+            </div>
+            <div>
+              <p> 
+                <span className='font-bold'>Aesthetic and Functionality:</span> Our designs not only provide energy savings but also add beauty and value to your property, creating enjoyable spaces for family and friends
+              </p>
+            </div>
           </div>
           <div className={styles.benefits}>
             <hr className={styles.customHr} />
-            <h1>NO LEAKS</h1>
+            <h1>Contact Us</h1>
           </div>
           <div className={styles.aboutSection}>
-            <p>Sunniva Solar specializes in crafting stunning solar and shade structures, and we are thrilled to announce that you can now purchase them as convenient kits through our online shop today. Explore our collection and discover the perfect addition to your space!</p>
-            <Link href="/why-sunniva">
+            <p>
+              office@sunnivasol.com <br />
+              970-759-5502
+            </p>
+            <Link href="/contact-us">
                 <Button type='bigPrimary'>LEARN MORE</Button>
             </Link>
           </div>
