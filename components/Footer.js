@@ -26,6 +26,12 @@ const Footer = () => {
           <a href="/contact-us">CONTACT US</a>
           <a href="/admin">ADMIN</a>
         </div>
+        <div className={styles.links}>
+          <a href="/warranty">WARRANTY</a>
+          <a href="/referral-program">REFERRAL PROGRAM</a>
+          <a href="/maintenance">MAINTENANCE</a>
+          <a href="/faqs">FAQS</a>
+        </div>
         <div className={styles.socialMedia}>
           <a
             href="https://www.facebook.com/people/Sunniva-Solar/100083357708143/"
