@@ -6,8 +6,9 @@ import Image from "next/image";
 import { db } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useCart } from "@/app/context/CartContext";
+import { useFirestore } from "@/app/context/FirestoreContext";
 import Button from "@/components/Button";
-import { formatCurrency } from "@/lib/utils";
+import { findMatchingPriceField, formatCurrency } from "@/lib/utils";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
@@ -45,21 +46,50 @@ const CollapsibleSection = ({ title, children }) => {
 const ProductDetails = () => {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const { prices } = useFirestore();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formattedPrice, setFormattedPrice] = useState(null);
+  const [priceFields, setPriceFields] = useState(null);
+  const [dynamicPrice, setDynamicPrice] = useState(null);
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
   const router = useRouter();
 
   useEffect(() => {
     if (product) {
-      setFormattedPrice(formatCurrency(product.price));
+      setFormattedPrice(
+        formatCurrency(dynamicPrice ? dynamicPrice : product.price)
+      );
     }
-  }, [product]);
+  }, [product, dynamicPrice]);
+
+  const lumber = watch("lumberSize");
+  const attachedOrStandAlone = watch("attachedOrStandAlone");
+  const panelSize = watch("selectedSize");
+
+  useEffect(() => {
+    if (prices && product && lumber && attachedOrStandAlone) {
+      setPriceFields(
+        findMatchingPriceField(
+          prices,
+          product.name,
+          lumber,
+          attachedOrStandAlone
+        )
+      );
+    }
+  }, [prices, product, lumber, attachedOrStandAlone]);
+
+  useEffect(() => {
+    if (priceFields && panelSize) {
+      setDynamicPrice(priceFields[panelSize]);
+    }
+  }, [priceFields, panelSize]);
 
   useEffect(() => {
     if (id) {
@@ -100,7 +130,7 @@ const ProductDetails = () => {
     const productWithOptions = {
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: dynamicPrice,
       images: product.images,
       selectedOptions: {
         selectedSize: data.selectedSize,
@@ -171,28 +201,28 @@ const ProductDetails = () => {
 
             <div className="mb-4">
               <label
-                htmlFor="selectedSize"
+                htmlFor="lumberSize"
                 className="block text-gray-700 font-bold mb-2"
               >
-                Select Size:
+                Lumber Size:
               </label>
               <select
-                id="selectedSize"
-                {...register("selectedSize", {
-                  required: "Please select a size.",
+                id="lumberSize"
+                {...register("lumberSize", {
+                  required: "Please select a lumber size.",
                 })}
                 className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="">Select size</option>
-                {product.sizes.map((size) => (
+                <option value="">Select lumber size</option>
+                {product.lumberSizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
                   </option>
                 ))}
               </select>
-              {errors.selectedSize && (
+              {errors.lumberSize && (
                 <p className="text-red-500 text-sm mt-2">
-                  {errors.selectedSize.message}
+                  {errors.lumberSize.message}
                 </p>
               )}
             </div>
@@ -274,28 +304,28 @@ const ProductDetails = () => {
 
             <div className="mb-4">
               <label
-                htmlFor="lumberSize"
+                htmlFor="selectedSize"
                 className="block text-gray-700 font-bold mb-2"
               >
-                Lumber Size:
+                Select Size:
               </label>
               <select
-                id="lumberSize"
-                {...register("lumberSize", {
-                  required: "Please select a lumber size.",
+                id="selectedSize"
+                {...register("selectedSize", {
+                  required: "Please select a size.",
                 })}
                 className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="">Select lumber size</option>
-                {product.lumberSizes.map((size) => (
+                <option value="">Select size</option>
+                {product.sizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
                   </option>
                 ))}
               </select>
-              {errors.lumberSize && (
+              {errors.selectedSize && (
                 <p className="text-red-500 text-sm mt-2">
-                  {errors.lumberSize.message}
+                  {errors.selectedSize.message}
                 </p>
               )}
             </div>
