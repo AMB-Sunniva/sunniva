@@ -2,12 +2,10 @@
 import Button from "../Button";
 import Link from "next/link";
 import Image from "next/image";
-import { useCart } from "@/app/context/CartContext";
 import { getAuth } from "firebase/auth";
 import { FiTrash2 } from "react-icons/fi";
 
 const ProductCard = ({ product, onDelete }) => {
-  const { addToCart } = useCart();
   const auth = getAuth();
 
   return (
