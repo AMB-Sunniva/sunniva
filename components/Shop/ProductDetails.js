@@ -96,7 +96,6 @@ const ProductDetails = () => {
   useEffect(() => {
     if (priceFields && panelSize) {
       setDynamicPrice(priceFields[panelSize]);
-      console.log(priceFields, "price fields");
     }
   }, [priceFields, panelSize]);
 
