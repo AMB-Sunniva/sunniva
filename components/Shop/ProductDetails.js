@@ -73,6 +73,14 @@ const ProductDetails = () => {
   const panelSize = watch("selectedSize");
 
   useEffect(() => {
+    if (product) {
+      if (product.name === "Just Solar") {
+        setPriceFields(findMatchingPriceField(prices, product.name));
+      }
+    }
+  }, [prices, product]);
+
+  useEffect(() => {
     if (prices && product && lumber && attachedOrStandAlone) {
       setPriceFields(
         findMatchingPriceField(
@@ -88,6 +96,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (priceFields && panelSize) {
       setDynamicPrice(priceFields[panelSize]);
+      console.log(priceFields, "price fields");
     }
   }, [priceFields, panelSize]);
 
@@ -197,110 +206,112 @@ const ProductDetails = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <hr className="my-4" />
+            {product.name !== "Just Solar" && <hr className="my-4" />}
+            {product.name !== "Just Solar" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="lumberSize"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Lumber Size:
+                </label>
 
-            <div className="mb-4">
-              <label
-                htmlFor="lumberSize"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Lumber Size:
-              </label>
-              <select
-                id="lumberSize"
-                {...register("lumberSize", {
-                  required: "Please select a lumber size.",
-                })}
-                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              >
-                <option value="">Select lumber size</option>
-                {product.lumberSizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </select>
-              {errors.lumberSize && (
-                <p className="text-red-500 text-sm mt-2">
-                  {errors.lumberSize.message}
-                </p>
-              )}
-            </div>
-
-            <hr className="my-4" />
-
-            <div className="mb-4">
-              <label
-                htmlFor="attachedOrStandAlone"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Attached or Stand Alone:
-              </label>
-              <select
-                id="attachedOrStandAlone"
-                {...register("attachedOrStandAlone", {
-                  required: "Please select an option.",
-                })}
-                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              >
-                <option value="">Select option</option>
-                <option value="Attached">Attached</option>
-                <option value="Stand Alone">Stand Alone</option>
-              </select>
-              {errors.attachedOrStandAlone && (
-                <p className="text-red-500 text-sm mt-2">
-                  {errors.attachedOrStandAlone.message}
-                </p>
-              )}
-            </div>
-
-            <hr className="my-4" />
-
-            <div className="mb-4">
-              <label
-                htmlFor="endBoardDesign"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                End Board Design:
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                  {endShapes.map((image, index) => (
-                    <div key={image.id} className="relative w-20 h-20">
-                      <span className="absolute top-4 left-2 text-white p-1 z-10">
-                        {String.fromCharCode(65 + index)}
-                      </span>
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        layout="fill"
-                        objectFit="cover"
-                        className="mb-4"
-                      />
-                    </div>
+                <select
+                  id="lumberSize"
+                  {...register("lumberSize", {
+                    required: "Please select a lumber size.",
+                  })}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                  <option value="">Select lumber size</option>
+                  {product.lumberSizes.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
                   ))}
-                </div>
-              </label>
-              <select
-                id="endBoardDesign"
-                {...register("endBoardDesign", {
-                  required: "Please select an end board design.",
-                })}
-                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              >
-                <option value="">Select design</option>
-                {product.endBoardDesigns.map((design) => (
-                  <option key={design} value={design}>
-                    {design}
-                  </option>
-                ))}
-              </select>
-              {errors.endBoardDesign && (
-                <p className="text-red-500 text-sm mt-2">
-                  {errors.endBoardDesign.message}
-                </p>
-              )}
-            </div>
+                </select>
 
-            <hr className="my-4" />
+                {errors.lumberSize && (
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.lumberSize.message}
+                  </p>
+                )}
+              </div>
+            )}
+            {product.name !== "Just Solar" && <hr className="my-4" />}
+            {product.name !== "Just Solar" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="attachedOrStandAlone"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Attached or Stand Alone:
+                </label>
+                <select
+                  id="attachedOrStandAlone"
+                  {...register("attachedOrStandAlone", {
+                    required: "Please select an option.",
+                  })}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                  <option value="">Select option</option>
+                  <option value="Attached">Attached</option>
+                  <option value="Stand Alone">Stand Alone</option>
+                </select>
+                {errors.attachedOrStandAlone && (
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.attachedOrStandAlone.message}
+                  </p>
+                )}
+              </div>
+            )}
+            {product.name !== "Just Solar" && <hr className="my-4" />}
+            {product.name !== "Just Solar" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="endBoardDesign"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  End Board Design:
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                    {endShapes.map((image, index) => (
+                      <div key={image.id} className="relative w-20 h-20">
+                        <span className="absolute top-4 left-2 text-white p-1 z-10">
+                          {String.fromCharCode(65 + index)}
+                        </span>
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          layout="fill"
+                          objectFit="cover"
+                          className="mb-4"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </label>
+                <select
+                  id="endBoardDesign"
+                  {...register("endBoardDesign", {
+                    required: "Please select an end board design.",
+                  })}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                  <option value="">Select design</option>
+                  {product.endBoardDesigns.map((design) => (
+                    <option key={design} value={design}>
+                      {design}
+                    </option>
+                  ))}
+                </select>
+                {errors.endBoardDesign && (
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.endBoardDesign.message}
+                  </p>
+                )}
+              </div>
+            )}
+            {product.name !== "Just Solar" && <hr className="my-4" />}
 
             <div className="mb-4">
               <label
@@ -330,37 +341,37 @@ const ProductDetails = () => {
               )}
             </div>
 
-            <hr className="my-4" />
-
-            <div className="mb-4">
-              <label
-                htmlFor="stainColor"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Stain Color:
-              </label>
-              <select
-                id="stainColor"
-                {...register("stainColor", {
-                  required: "Please select a stain color.",
-                })}
-                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              >
-                <option value="">Select stain color</option>
-                {product.stainColors.map((color) => (
-                  <option key={color} value={color}>
-                    {color}
-                  </option>
-                ))}
-              </select>
-              {errors.stainColor && (
-                <p className="text-red-500 text-sm mt-2">
-                  {errors.stainColor.message}
-                </p>
-              )}
-            </div>
-
-            <hr className="my-4" />
+            {product.name !== "Just Solar" && <hr className="my-4" />}
+            {product.name !== "Just Solar" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="stainColor"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Stain Color:
+                </label>
+                <select
+                  id="stainColor"
+                  {...register("stainColor", {
+                    required: "Please select a stain color.",
+                  })}
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                  <option value="">Select stain color</option>
+                  {product.stainColors.map((color) => (
+                    <option key={color} value={color}>
+                      {color}
+                    </option>
+                  ))}
+                </select>
+                {errors.stainColor && (
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.stainColor.message}
+                  </p>
+                )}
+              </div>
+            )}
+            {product.name !== "Just Solar" && <hr className="my-4" />}
 
             <Button type="primary" submit>
               Add to Cart
