@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import ProductDescription from "./ProductDescription";
 
 const endShapes = [
   { id: 1, src: "/images/EndShape1.jpg", alt: "End Shape 1" },
@@ -49,6 +50,7 @@ const ProductDetails = () => {
   const { prices } = useFirestore();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [sizes, setSizes] = useState(null);
   const [formattedPrice, setFormattedPrice] = useState(null);
   const [priceFields, setPriceFields] = useState(null);
   const [dynamicPrice, setDynamicPrice] = useState(null);
@@ -98,6 +100,12 @@ const ProductDetails = () => {
       setDynamicPrice(priceFields[panelSize]);
     }
   }, [priceFields, panelSize]);
+
+  useEffect(() => {
+    if (product) {
+      setSizes(product.sizes);
+    }
+  }, [product]);
 
   useEffect(() => {
     if (id) {
@@ -157,7 +165,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto py-8 px-4 max-w-5xl">
       <button
         onClick={handleBackToProducts}
         type="button"
@@ -187,9 +195,43 @@ const ProductDetails = () => {
               )}
             </div>
           )}
-          <p className="text-gray-700 mb-4 max-w-[400px]">
-            {product.description}
-          </p>
+          <ProductDescription product={product} />
+          {/* <div className="text-gray-700 mb-4 max-w-[600px]">
+            <p className="mb-2">{product.description.infoFront}&nbsp; </p>
+            &nbsp;
+            <div>
+              <strong>Features and Benefits</strong>&nbsp;
+              <ul className="list-disc list-inside ml-6">
+                {" "}
+                {Object.entries(product.description.featuresAndBenefits).map(
+                  ([featureKey, featureValue], index) => (
+                    <li key={index} className="mb-1">
+                      <strong>{`${featureKey}: `}</strong>
+                      {featureValue}&nbsp;
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+            &nbsp;
+            <div>
+              <strong>Technical Details</strong>
+              &nbsp;
+              <ul className="list-disc list-inside ml-6">
+                {" "}
+                {Object.entries(product.description.technicalDetails).map(
+                  ([featureKey, featureValue], index) => (
+                    <li key={index} className="mb-1">
+                      <strong>{`${featureKey}: `}</strong>
+                      {featureValue}&nbsp;
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+            &nbsp;
+            <p className="mb-2">{product.description.infoEnd}&nbsp; </p>
+          </div> */}
         </div>
         <div className="text-center md:text-left max-w-md">
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
@@ -327,11 +369,15 @@ const ProductDetails = () => {
                 className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
                 <option value="">Select size</option>
-                {product.sizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
+                {product.sizes.map((size) =>
+                  attachedOrStandAlone === "Attached" &&
+                  product.name.includes("Just Shade") &&
+                  size === "2 Post Hammock" ? null : (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  )
+                )}
               </select>
               {errors.selectedSize && (
                 <p className="text-red-500 text-sm mt-2">

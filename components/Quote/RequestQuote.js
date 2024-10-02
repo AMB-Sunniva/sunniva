@@ -141,9 +141,7 @@ const RequestQuote = () => {
                 <option value="Solar + Shade">Solar + Shade</option>
                 <option value="Just Solar">Just Solar</option>
                 <option value="Just Shade">Just Shade</option>
-                <option value="EV Charger or Smart Panel">
-                  EV Charger or Smart Panel
-                </option>
+
                 <option value="DIY Kit">DIY Kit</option>
                 <option value="Other">Other</option>
               </select>
