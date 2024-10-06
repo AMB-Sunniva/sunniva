@@ -195,7 +195,7 @@ const ProductDetails = () => {
               )}
             </div>
           )}
-          <ProductDescription product={product} />
+          {/* <ProductDescription product={product} /> */}
           {/* <div className="text-gray-700 mb-4 max-w-[600px]">
             <p className="mb-2">{product.description.infoFront}&nbsp; </p>
             &nbsp;
@@ -424,10 +424,11 @@ const ProductDetails = () => {
           </form>
 
           <CollapsibleSection title="Product Info">
-            <p>
+            <ProductDescription product={product} />
+            {/* <p>
               {`Tailored to your needs, our solar + shade systems are available in a range of sizes, ensuring a perfect fit for any outdoor space. 
               From cozy retreats to expansive landscapes, our systems provide varying energy generation capacities to match your unique requirements while keeping you shaded and energy-efficient.`}
-            </p>
+            </p> */}
             <table className="table-auto w-full text-left mt-4">
               <thead>
                 <tr>
@@ -504,7 +505,7 @@ const ProductDetails = () => {
                 </tr>
               </tbody>
             </table>
-            <p className="mt-4">{`Included with your purchase will be:`}</p>
+            {/* <p className="mt-4">{`Included with your purchase will be:`}</p>
             <ul className="list-disc list-inside">
               <li>{`Lumber (Rough Sawn Doug Fir cut to various sizes)`}</li>
               <li>{`Hardware (sleek black hardware to compliment the wood)`}</li>
@@ -512,7 +513,7 @@ const ProductDetails = () => {
               <li>{`Microinverters and Gateway Monitoring device (NEP microinverters with NEP monitoring device)`}</li>
               <li>{`Custom S5 Racking system (S5 clamps with custom racking system)`}</li>
               <li>{`Other Electrical Hardware (AC tail cable, jumper cables)`}</li>
-            </ul>
+            </ul> */}
           </CollapsibleSection>
 
           <CollapsibleSection title="Return and Refund Policy">
