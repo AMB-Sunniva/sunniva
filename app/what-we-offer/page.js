@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import AddOnGallery from "@/components/AddOn/AddOnGallery";
 import Link from "next/link";
 import Button from "@/components/Button";
 
