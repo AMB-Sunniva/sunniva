@@ -31,6 +31,7 @@ const CollapsibleSection = ({ title, children }) => {
 export default function AddProduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -71,6 +72,7 @@ export default function AddProduct() {
       const productRef = await addDoc(collection(db, "products"), {
         name,
         price,
+        type,
         description,
         images: [],
         sizes,
@@ -142,6 +144,20 @@ export default function AddProduct() {
             onChange={(e) => setPrice(e.target.value)}
             className="mt-1 block w-full md:w-1/4 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-1"
           />
+        </div>
+        <div>
+          <label className="block text-medium text-custom-gray">Type</label>
+          <select
+              name="type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className="text-gray-700 mb-4 border border-gray-300 px-1"
+            >
+              <option value="" disabled selected></option>
+              <option value="Solar and Shade Kits">Solar and Shade Kits</option>
+              <option value="Just Shade Kits">Just Shade Kits</option>
+              <option value="Just Solar Kits">Just Solar Kits</option>
+            </select>
         </div>
         <div>
           <label className="block text-medium text-custom-gray">

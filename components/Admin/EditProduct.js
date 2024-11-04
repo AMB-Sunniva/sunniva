@@ -211,6 +211,19 @@ const EditProduct = () => {
                 className="w-1/4 text-gray-700 mb-4 border border-gray-300 px-1"
               />
             </p>
+            <p className="text-gray-700 mb-4 flex">
+              <select
+                name="type"
+                value={product.type}
+                onChange={handleFieldChange}
+                className="text-gray-700 mb-4 border border-gray-300 px-1"
+              >
+                <option value="" disabled selected>Product Type</option>
+                <option value="Solar and Shade Kits">Solar and Shade Kits</option>
+                <option value="Just Shade Kits">Just Shade Kits</option>
+                <option value="Just Solar Kits">Just Solar Kits</option>
+              </select>
+            </p>
 
             <CollapsibleSection title="Sizes">
               <div className="flex items-center mb-2">
