@@ -6,10 +6,9 @@ import Button from "@/components/Button";
 
 export default function Shop() {
   const { products, loading } = useFirestore();
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   if (loading) return <div>Loading...</div>;
-
-  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const handleCategory = (category) => {
     setSelectedCategory(category);
