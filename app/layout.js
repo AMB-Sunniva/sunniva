@@ -11,12 +11,12 @@ import Cart from "@/components/Cart";
 const InnerLayout = ({ children }) => {
   const { isCartOpen, closeCart } = useCart();
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main>{children}</main>
+      <main className="flex-grow">{children}</main>
       <Footer />
       <Cart isCartOpen={isCartOpen} closeCart={closeCart} />
-    </>
+    </div>
   );
 };
 const Layout = ({ children }) => {
