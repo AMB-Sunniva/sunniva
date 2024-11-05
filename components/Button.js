@@ -15,6 +15,8 @@ export default function Button({
       "bg-custom-blue text-white hover:bg-white hover:text-custom-blue border border-custom-blue text-xl",
     secondary:
       "border border-custom-blue text-custom-blue bg-white hover:bg-custom-blue hover:text-white",
+    kitButton:
+      "flex-1 border border-custom-blue bg-whitetext-custom-blue text-2xl py-10 hover:bg-custom-blue hover:text-white",
   };
 
   const disabledStyles = "opacity-50 cursor-not-allowed";
