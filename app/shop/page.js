@@ -38,13 +38,13 @@ export default function Shop() {
   };
 
   return (
-    <div className="w-full py-8 flex justify-center">
+    <div className="w-full pt-8 flex justify-center">
       <div className="flex w-full">
-        {isSidebarVisible && (
+        {isSidebarVisible && selectedCategory && (
           <div
             className={`${
               isSidebarHidden ? "w-12" : "w-48"
-            } h-[calc(100vh-4rem)] border-r border-gray-300 p-2 transition-all duration-300 sticky top-20 bg-white flex`}
+            } h-[calc(100vh-4rem)] border-r border-gray-300 transition-all duration-300 sticky top-20 bg-white flex`}
           >
             <button
               onClick={toggleSidebar}
@@ -121,15 +121,15 @@ export default function Shop() {
                 </Button>
                 <Button
                   type="kitButton"
-                  onClick={() => handleCategory("Just Shade Kits")}
-                >
-                  Just Shade
-                </Button>
-                <Button
-                  type="kitButton"
                   onClick={() => handleCategory("Just Solar Kits")}
                 >
                   Just Solar
+                </Button>
+                <Button
+                  type="kitButton"
+                  onClick={() => handleCategory("Just Shade Kits")}
+                >
+                  Just Shade
                 </Button>
               </div>
             )}

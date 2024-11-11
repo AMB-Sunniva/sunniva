@@ -14,14 +14,14 @@ const ProductSideBar = ({ products }) => {
   });
 
   return (
-    <div className="w-48 p-4 bg-gray-100 border-r border-gray-300">
-      <h2 className="text-xl font-semibold mb-4">Products</h2>
+    <div className="w-48 pt-24 px-4 bg-gray-100 border-r border-gray-300">
+      <h2 className="text-xl font-semibold mb-4 text-custom-gray">Products</h2>
       <ul className="space-y-2">
         {sortedProducts.map((product) => (
           <li key={product.id} className="flex justify-between items-center">
             <Link
               href={`/product/${product.id}`}
-              className="text-blue-600 hover:underline"
+              className="text-custom-blue hover:underline"
             >
               {product.name}
             </Link>
