@@ -8,7 +8,7 @@ export default function WhatWeOffer() {
     <div>
       <div className={styles.title}>
         <h1 style={{paddingTop: '32px'}}>WHAT WE OFFER</h1>
-        <p>At Sunniva Solar, we specialize in transforming your outdoor spaces with our versatile range of solar and shade structures. Our premium solar shade systems combine stylish design with functionality, providing both shelter and renewable energy for your home. For those seeking just shade, our elegant shade structures offer comfort and protection from the elements. Alternatively, our stand-alone solar products deliver efficient energy solutions without the need for additional coverage. Explore our innovative offerings and discover how we can enhance your home with quality and sustainability.</p>
+        <p>At Sunniva Solar, we specialize in transforming your outdoor spaces with our versatile range of solar and shade structures. Our premium solar shade systems combine stylish design and functionality, providing both shelter and renewable energy for your home. For those seeking just shade, our elegant shade structures offer comfort and protection from the elements. Alternatively, our stand-alone solar products deliver efficient energy solutions without the need for additional coverage. Explore our innovative offerings and discover how we can enhance your home with quality and sustainability.</p>
       </div>
       <div className={styles.customization}>
         <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
