@@ -10,7 +10,7 @@ export default function WhatWeOffer() {
         <p>
           At Sunniva Solar, we specialize in transforming your outdoor spaces
           with our versatile range of solar and shade structures. Our premium
-          solar shade systems combine stylish design with functionality,
+          solar shade systems combine stylish design and functionality,
           providing both shelter and renewable energy for your home. For those
           seeking just shade, our elegant shade structures offer comfort and
           protection from the elements. Alternatively, our stand-alone solar
