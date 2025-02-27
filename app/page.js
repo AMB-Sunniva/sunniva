@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import styles from './page.module.css'
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
@@ -9,20 +8,6 @@ import Carousel from '@/components/Carousel/Carousel'
 export default function HomePage() {
   return (
     <div>
-      <Head>
-        {/* Google Tag */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EF3J0WNEKC"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-EF3J0WNEKC');
-            `,
-          }}
-        />
-      </Head>
       <LandingPage />
       <div className={styles.homePage}>
         <div>

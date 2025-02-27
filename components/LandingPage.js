@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
       <Image
-        src="/images/picTen.jpeg"
+        src="/images/EILC1335.jpg"
         alt="Solar"
         fill
         style={{ objectFit: "cover" }}
