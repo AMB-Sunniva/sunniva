@@ -53,7 +53,7 @@ exports.sendEmail = functions.https.onRequest((req, res) => {
 
       const mailOptions = {
         from: functions.config().email.usertest, // Use the email from config
-        to: "dillon.craw@gmail.com",
+        to: "amb.sunnivasol@gmail.com",
         subject: "New Quote Request",
         text: `
           Company: ${company}
@@ -170,7 +170,7 @@ exports.sendOrderConfirmation = functions.https.onRequest((req, res) => {
       // Send email to yourself (admin)
       await transporter.sendMail({
         from: functions.config().email.usertest,
-        to: "dillon.craw@gmail.com",
+        to: "amb.sunnivasol@gmail.com",
         subject: "New Order Received",
         text: adminTextContent,
       });
