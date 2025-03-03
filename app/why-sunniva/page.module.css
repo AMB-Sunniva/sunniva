@@ -87,6 +87,13 @@
     letter-spacing: 2px;
 }
 
+.responsiveImage{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
 .image{
     text-align: center;
     margin: 20px auto 0;
