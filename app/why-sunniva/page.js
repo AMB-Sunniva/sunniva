@@ -21,7 +21,7 @@ export default function WhySunnivaPage() {
         </p>
 
         <div className={styles.box}>
-                <div className={styles.content}>
+                <div className={styles.container}>
                     <div>
                     <h3>OUR CORE VALUES</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
@@ -43,7 +43,7 @@ export default function WhySunnivaPage() {
                             <div className={styles.image}>
                                 <Image src="/images/RLSWarm.jpg" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
                             </div>
-                            <div className={styles.sustainability}>
+                            <div className={styles.content}>
                                 At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
                                 at a time.
                         </div>
