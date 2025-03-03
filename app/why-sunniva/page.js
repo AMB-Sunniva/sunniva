@@ -23,23 +23,24 @@ export default function WhySunnivaPage() {
         <div className={styles.container}>
             <div className={styles.box}>
                 <div className={styles.content}>
-                    <Image src="/images/RLSWarm.jpg" alt="Sunniva" width={250} height={50} className={styles.responsiveImage}/>
-                    <h2>OUR CORE VALUES</h2>
-                    <div>
-                        <ul>
-                            <li>
-                            <span>Family:</span> We believe in the importance of creating spaces where families can gather, bond,
-                            and enjoy quality time together.
-                            </li>
-                            <li>
-                            <span> Sustainability:</span> Our commitment to eco-friendly practices ensures that our products
-                            contribute to a greener, more sustainable future.
-                            </li>
-                            <li>
-                            <span>Quality:</span> We are dedicated to using premium materials and craftsmanship to deliver
-                            durable, high-performance products that stand the test of time.
-                            </li>
-                        </ul>
+                    <h2 className={styles.centeredTitle}>OUR CORE VALUES</h2>
+                    <div className={styles.flexContainer}>
+                        <div className={styles.textContainer}>
+                            <ul>
+                                <li>
+                                <span>Family:</span> We believe in the importance of creating spaces where families can gather, bond,
+                                and enjoy quality time together.
+                                </li>
+                                <li>
+                                <span> Sustainability:</span> Our commitment to eco-friendly practices ensures that our products
+                                contribute to a greener, more sustainable future.
+                                </li>
+                                <li>
+                                <span>Quality:</span> We are dedicated to using premium materials and craftsmanship to deliver
+                                durable, high-performance products that stand the test of time.
+                                </li>
+                            </ul>
+                        </div>
                         <div className={styles.values}>At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
                         at a time.
                         </div>
@@ -87,7 +88,7 @@ export default function WhySunnivaPage() {
                                 </li>
                             </ul>
                             <div className={styles.image}>
-                                <img src="/images/blueLogo.png" alt="Sunniva" width="{250}" height="{50}"></img>
+                                <Image src="/images/blueLogo.png" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
                             </div>
                             <div className={styles.closing}>
                                 Together, we can create beautiful spaces that not only bring families closer but also contribute to a healthier planet for future generations. Thank you for choosing Sunniva Solar and joining us in building a sustainable future.

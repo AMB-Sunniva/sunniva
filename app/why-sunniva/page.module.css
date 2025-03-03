@@ -43,6 +43,35 @@
     text-transform: uppercase;
 }
 
+.centeredTitle{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.flexContainer{
+    display:flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+.textContainer{
+    flex: 2;
+    text-align: left;
+}
+
+.imageContainer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.rightImage{
+    max-width: 100%;
+    height: auto;
+}
+
 .values {
     margin: 0;
     font-size: 1.2rem;
@@ -92,11 +121,19 @@
     height: auto;
     display: block;
     margin: 20px auto;
+    padding: 0 20px;
 }
 
 .image{
-    text-align: center;
-    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.centeredImage{
+    max-width: 100%;
+    height: auto;
 }
 
 .closing{
