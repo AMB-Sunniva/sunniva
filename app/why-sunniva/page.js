@@ -20,32 +20,32 @@ export default function WhySunnivaPage() {
         empower you to create outdoor spaces that are both eco-friendly and uniquely yours.
         </p>
 
-        <div className={styles.container}>
-            <div className={styles.box}>
+        <div className={styles.box}>
                 <div className={styles.content}>
-                    <h2 className={styles.centeredTitle}>OUR CORE VALUES</h2>
-                    <div className={styles.flexContainer}>
-                        <div className={styles.textContainer}>
-                            <ul>
+                    <div>
+                    <h3>OUR CORE VALUES</h3>
+                    <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
+                        
+                        <ul>
                                 <li>
                                 <span>Family:</span> We believe in the importance of creating spaces where families can gather, bond,
                                 and enjoy quality time together.
                                 </li>
                                 <li>
-                                <span> Sustainability:</span> Our commitment to eco-friendly practices ensures that our products
+                                <span>Sustainability:</span> Our commitment to eco-friendly practices ensures that our products
                                 contribute to a greener, more sustainable future.
                                 </li>
                                 <li>
-                                <span>Quality:</span> We are dedicated to using premium materials and craftsmanship to deliver
+                                <span>Quality:</span>We are dedicated to using premium materials and craftsmanship to deliver
                                 durable, high-performance products that stand the test of time.
                                 </li>
                             </ul>
-                        </div>
-                        <div className={styles.imageContainer}>
-                            <Image src="/images/RLSWarm.jpg" alt="Sunniva" width={250} height={250} className={styles.rightImage} />
-                        </div>
-                        <div className={styles.values}>At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
-                        at a time.
+                            <div className={styles.image}>
+                                <Image src="/images/RLSWarm.jpg" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
+                            </div>
+                            <div className={styles.sustainability}>
+                                At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
+                                at a time.
                         </div>
                     </div>
                 </div>
@@ -100,6 +100,5 @@ export default function WhySunnivaPage() {
                 </div>
             </div>
         </div>
-    </div>
   );
 }
