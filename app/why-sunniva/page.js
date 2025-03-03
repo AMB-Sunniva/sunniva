@@ -41,6 +41,9 @@ export default function WhySunnivaPage() {
                                 </li>
                             </ul>
                         </div>
+                        <div className={styles.imageContainer}>
+                            <Image src="/images/RLSWarm.jpg" alt="Sunniva" width={250} height={250} className={styles.rightImage} />
+                        </div>
                         <div className={styles.values}>At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
                         at a time.
                         </div>
