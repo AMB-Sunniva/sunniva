@@ -87,6 +87,11 @@
     letter-spacing: 2px;
 }
 
+.image{
+    text-align: center;
+    margin: 20px auto 0;
+}
+
 .closing{
     font-size: 1.2rem;
     color: #474949;

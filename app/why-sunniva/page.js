@@ -1,4 +1,5 @@
 import styles from './page.module.css'
+import Image from 'next/image';
 
 export default function WhySunnivaPage() {
   return (
@@ -22,6 +23,7 @@ export default function WhySunnivaPage() {
         <div className={styles.container}>
             <div className={styles.box}>
                 <div className={styles.content}>
+                    <Image src="/images/RLSWarm.jpg" alt="Sunniva" width={250} height={50}/>
                     <h2>OUR CORE VALUES</h2>
                     <div>
                         <ul>
@@ -84,6 +86,7 @@ export default function WhySunnivaPage() {
                                 <span>Customer Education:</span> We are committed to providing our customers with knowledge about sustainable practices and energy savings, helping them make eco-friendly choices that benefit both their homes and the planet.
                                 </li>
                             </ul>
+                            <img src="/images/blueLogo.png" alt="Sunniva" width="{250}" height="{50}"></img>
                             <div className={styles.closing}>
                                 Together, we can create beautiful spaces that not only bring families closer but also contribute to a healthier planet for future generations. Thank you for choosing Sunniva Solar and joining us in building a sustainable future.
                             </div>
