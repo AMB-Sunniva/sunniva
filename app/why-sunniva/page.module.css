@@ -37,10 +37,10 @@
 }
 .content h1 {
     margin: 0;
-    padding: 5rem;
     color: #474949;
-    font-size: larger;
     font-weight: bold;
+    font-size: larger;
+    padding: 48px 0 8px;
     text-align: center;
 }
 .content h2 {
