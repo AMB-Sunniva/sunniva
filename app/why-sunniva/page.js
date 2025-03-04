@@ -23,7 +23,7 @@ export default function WhySunnivaPage() {
             <div className={styles.box}>
                 <div className={styles.content}>
                     <div>
-                    <h3>Our Sustainability Commitment</h3>
+                    <h3>Our Core Values</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
                         <div className={styles.sustainability}>
                         At Sunniva Solar, we are dedicated to fostering a sustainable future through responsible practices
@@ -61,7 +61,7 @@ export default function WhySunnivaPage() {
                                 </li>
                             </ul>
                             <div className={styles.image}>
-                                <Image src="/images/blueLogo.png" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
+                                <Image src="/images/RLSWarm.jpg" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
                             </div>
                             <div className={styles.closing}>
                                 Together, we can create beautiful spaces that not only bring families closer but also contribute to a healthier planet for future generations. Thank you for choosing Sunniva Solar and joining us in building a sustainable future.
