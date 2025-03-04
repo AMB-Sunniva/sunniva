@@ -26,9 +26,7 @@ export default function WhySunnivaPage() {
                     <h3>Our Core Values</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
                         <div className={styles.sustainability}>
-                        At Sunniva Solar, we are dedicated to fostering a sustainable future through responsible practices
-                        and innovative solutions. Our commitment to sustainability is reflected in every aspect of our
-                        business, from the materials we use to the community initiatives we support.
+                        Sunniva Solar holds itself to a certain set of standards. We provide a value and experience that you will not find elsewhere. Our goal is to maintain these values and assure our customers that their products are sustainable and high quality. Above all, we are a family here at Sunniva.
                         </div>
                         <ul>
                             <h1>Family</h1>
