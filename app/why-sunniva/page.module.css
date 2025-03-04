@@ -50,6 +50,11 @@
     text-transform: uppercase;
 }
 
+.content p2 {
+    font-size: 1.2rem;
+    color: #474949;
+    padding-bottom: 0.9rem;
+}
 .centeredTitle{
     text-align: center;
     width: 100%;
