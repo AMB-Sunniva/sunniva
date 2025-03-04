@@ -34,27 +34,12 @@ export default function WhySunnivaPage() {
                             <h1>Family</h1>
                                 <h5>We believe in the importance of creating spaces where families can gather, bond,
                                 and enjoy quality time together.</h5>
-                            <h4>Environmental Impact</h4>
-                                <li>
-                                <span>Reduced Carbon Footprint:</span> By harnessing solar energy, our products help decrease dependence on fossil fuels, making a positive impact on the environment and reducing your carbon footprint.
-                                </li>
-                                <li>
-                                <span>Recycling and Waste Reduction:</span> We are committed to minimizing waste during production and encourage the recycling of materials. Our goal is to lessen our environmental impact and promote a circular economy.
-                                </li>
-                            <h4>Community and Partnerships</h4>
-                                <li>
-                                <span>Supporting Local Installers:</span> We partner with local solar installers to foster economic growth and create job opportunities within communities across the country.
-                                </li>
-                                <li>
-                                <span>Educational Initiatives:</span> Through workshops and online resources, we educate homeowners and installers on the benefits of renewable energy and sustainable practices, empowering them to make informed decisions.
-                                </li>
-                            <h4>Continuous Improvement</h4>
-                                <li>
-                                <span>Research and Innovation:</span> We invest in research and development to continuously enhance the efficiency and sustainability of our products. Our focus is on integrating new materials and technologies to improve our offerings.
-                                </li>
-                                <li>
-                                <span>Customer Education:</span> We are committed to providing our customers with knowledge about sustainable practices and energy savings, helping them make eco-friendly choices that benefit both their homes and the planet.
-                                </li>
+                            <h1>sustainability</h1>
+                                <h5>Our commitment to eco-friendly practices ensures that our products
+                                contribute to a greener, more sustainable future.</h5>
+                            <h1>Quality</h1>
+                                <h5>We are dedicated to using premium materials and craftsmanship to deliver
+                                durable, high-performance products that stand the test of time.</h5>
                             </ul>
                             <div className={styles.image}>
                                 <Image src="/images/RLSWarm.jpg" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
