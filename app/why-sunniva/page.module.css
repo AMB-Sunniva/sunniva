@@ -35,7 +35,14 @@
     align-items: center;
     padding: 7rem;
 }
-
+.content h1 {
+    margin: 0;
+    padding: 5rem;
+    color: #474949;
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+}
 .content h2 {
     margin: 0;
     padding: 5rem;

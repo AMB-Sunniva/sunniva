@@ -31,7 +31,7 @@ export default function WhySunnivaPage() {
                         business, from the materials we use to the community initiatives we support.
                         </div>
                         <ul>
-                            <h4>Materials and Design</h4>
+                            <h1>Family</h1>
                                 <li>
                                 <span>FSC Certified Wood:</span> We use sustainably sourced, FSC certified rough sawn doug fir for our structures. This ensures that our materials come from responsibly managed forests, promoting environmental stewardship.
                                 </li>
