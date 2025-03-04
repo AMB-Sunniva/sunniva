@@ -25,7 +25,7 @@ export default function WhySunnivaPage() {
                     <div>
                     <h3>Core Values</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
-                        <div className={styles.sustainability}>
+                        <div className={styles.values}>
                         Sunniva Solar holds itself to a certain set of standards. We provide a value and experience that you will not find elsewhere. Our goal is to maintain these values and assure our customers that their products are sustainable and high quality. Above all, we are a family here at Sunniva.
                         </div>
                         <ul>
