@@ -23,8 +23,8 @@ export default function WhySunnivaPage() {
             <div className={styles.box}>
                 <div className={styles.content}>
                     <div>
-                    <h3>Our Core Values</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
+                        <h3>Our Core Values</h3>
                         <div className={styles.sustainability}>
                         At Sunniva Solar, we&apos;re not just designing structures; we&apos;re shaping the places where life&apos;s moments unfold. Join us in building a more beautiful and sustainable future, one outdoor space
                         at a time.
