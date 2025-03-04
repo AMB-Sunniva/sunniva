@@ -57,7 +57,7 @@
     color: #474949;
     padding-bottom: 0.9rem;
     text-align: center;
-    max-width: 100;
+    max-width: 100px;
 }
 .centeredTitle{
     text-align: center;
@@ -128,6 +128,7 @@
     font-size: 1.2rem;
     color: #474949;
     padding-bottom: 0.9rem;
+    max-width: 100px;
 }
 .content h3 {
     text-transform: uppercase;
