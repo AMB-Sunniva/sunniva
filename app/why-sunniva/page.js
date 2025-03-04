@@ -31,9 +31,9 @@ export default function WhySunnivaPage() {
                         business, from the materials we use to the community initiatives we support.
                         </div>
                         <ul>
-                            <h5>Family</h5>
-                                <p2>We believe in the importance of creating spaces where families can gather, bond,
-                                and enjoy quality time together.</p2>
+                            <h1>Family</h1>
+                                <h5>We believe in the importance of creating spaces where families can gather, bond,
+                                and enjoy quality time together.</h5>
                             <h4>Environmental Impact</h4>
                                 <li>
                                 <span>Reduced Carbon Footprint:</span> By harnessing solar energy, our products help decrease dependence on fossil fuels, making a positive impact on the environment and reducing your carbon footprint.
