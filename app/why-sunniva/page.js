@@ -23,7 +23,7 @@ export default function WhySunnivaPage() {
             <div className={styles.box}>
                 <div className={styles.content}>
                     <div>
-                    <h3>Our Core Values</h3>
+                    <h3>Core Values</h3>
                     <hr style={{width:'3%', borderColor: '#333', margin: '30px auto'}} />
                         <div className={styles.sustainability}>
                         Sunniva Solar holds itself to a certain set of standards. We provide a value and experience that you will not find elsewhere. Our goal is to maintain these values and assure our customers that their products are sustainable and high quality. Above all, we are a family here at Sunniva.
@@ -63,7 +63,7 @@ export default function WhySunnivaPage() {
                         <ul>
                             <h4>Materials and Design</h4>
                                 <li>
-                                <span>FSC Certified Wood:</span> We use sustainably sourced, FSC certified rough sawn doug fir for our structures. This ensures that our materials come from responsibly managed forests, promoting environmental stewardship.
+                                <span>Premium Quality Wood:</span> Our structures are built using high quality, rough-sawn Douglas, known for its strength, durabilty, and natural beauty. This carefully selected wood provides a sturdy and long-lasting foundation while enhancing the aesthetic appeal of any space.
                                 </li>
                                 <li>
                                 <span>High-Quality Solar Panels:</span> Our structures feature tier 1 solar panels renowned for their efficiency and durability. These panels contribute to clean energy generation and support a reduction in greenhouse gas emissions.
