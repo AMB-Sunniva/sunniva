@@ -32,8 +32,12 @@ export default function WhySunnivaPage() {
                         </div>
                         <ul>
                             <h1>Family</h1>
-                                <h5>We believe in the importance of creating spaces where families can gather, bond,
-                                and enjoy quality time together.</h5>
+                                <li>
+                                <span>FSC Certified Wood:</span> We use sustainably sourced, FSC certified rough sawn doug fir for our structures. This ensures that our materials come from responsibly managed forests, promoting environmental stewardship.
+                                </li>
+                                <li>
+                                <span>High-Quality Solar Panels:</span> Our structures feature tier 1 solar panels renowned for their efficiency and durability. These panels contribute to clean energy generation and support a reduction in greenhouse gas emissions.
+                                </li>
                             <h4>Environmental Impact</h4>
                                 <li>
                                 <span>Reduced Carbon Footprint:</span> By harnessing solar energy, our products help decrease dependence on fossil fuels, making a positive impact on the environment and reducing your carbon footprint.

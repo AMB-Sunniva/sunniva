@@ -39,7 +39,7 @@
     margin: 0;
     color: #474949;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 0px;
     padding: 48px 0 8px;
     text-align: center;
 }
@@ -50,12 +50,6 @@
     text-transform: uppercase;
 }
 
-.content h5 {
-    font-size: 1.2rem;
-    color: #474949;
-    padding-bottom: 0.9rem;
-    text-align: center;
-}
 .centeredTitle{
     text-align: center;
     width: 100%;
