@@ -31,7 +31,7 @@ export default function WhySunnivaPage() {
                         business, from the materials we use to the community initiatives we support.
                         </div>
                         <ul>
-                            <h1>Family</h1>
+                            <h5>Family</h5>
                                 <p2>We believe in the importance of creating spaces where families can gather, bond,
                                 and enjoy quality time together.</p2>
                             <h4>Environmental Impact</h4>
