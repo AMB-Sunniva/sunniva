@@ -461,11 +461,7 @@ const ProductDetails = () => {
                   <td className="border px-4 py-2">11</td>
                   <td className="border px-4 py-2">{`22' 1/4" x 31' 8 1/2"`}</td>
                 </tr>
-                <tr>
-                  <td className="border px-4 py-2">21 Panel</td>
-                  <td className="border px-4 py-2">13.55</td>
-                  <td className="border px-4 py-2">{`30' 8 3/4" x 23' 9 5/8"`}</td>
-                </tr>
+               
               </tbody>
             </table>
             {/* <p className="mt-4">{`Included with your purchase will be:`}</p>
