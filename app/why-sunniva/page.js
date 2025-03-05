@@ -30,8 +30,8 @@ export default function WhySunnivaPage() {
                         </div>
                         <ul>
                             <h1>Family</h1>
-                                <h5>We believe in the importance of creating spaces where families can gather, bond,
-                                and enjoy quality time together.</h5>
+                                <h4>We believe in the importance of creating spaces where families can gather, bond,
+                                and enjoy quality time together.</h4>
                             <h1>Sustainability</h1>
                                 <h5>Our commitment to eco-friendly practices ensures that our products
                                 contribute to a greener, more sustainable future.</h5>
