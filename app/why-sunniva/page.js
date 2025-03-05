@@ -30,14 +30,14 @@ export default function WhySunnivaPage() {
                         </div>
                         <ul>
                             <h1>Family</h1>
-                                <h4>We believe in the importance of creating spaces where families can gather, bond,
-                                and enjoy quality time together.</h4>
+                                <p>We believe in the importance of creating spaces where families can gather, bond,
+                                and enjoy quality time together.</p>
                             <h1>Sustainability</h1>
-                                <h5>Our commitment to eco-friendly practices ensures that our products
-                                contribute to a greener, more sustainable future.</h5>
+                                <p>Our commitment to eco-friendly practices ensures that our products
+                                contribute to a greener, more sustainable future.</p>
                             <h1>Quality</h1>
-                                <h5>We are dedicated to using premium materials and craftsmanship to deliver
-                                durable, high-performance products that stand the test of time.</h5>
+                                <p>We are dedicated to using premium materials and craftsmanship to deliver
+                                durable, high-performance products that stand the test of time.</p>
                             </ul>
                             <div className={styles.image}>
                                 <Image src="/images/RLSWarm.jpg" alt="Sunniva" width="{250}" height="{50}" className={styles.centeredImage} />
