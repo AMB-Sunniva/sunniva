@@ -403,62 +403,62 @@ const ProductDetails = () => {
               <tbody>
                 <tr>
                   <td className="border px-4 py-2">4 Panel</td>
-                  <td className="border px-4 py-2">2.58</td>
+                  <td className="border px-4 py-2">2.2</td>
                   <td className="border px-4 py-2">{`8' 11 1/2" x 15' 10 3/4"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">6 Panel Long</td>
-                  <td className="border px-4 py-2">3.87</td>
+                  <td className="border px-4 py-2">3.3</td>
                   <td className="border px-4 py-2">{`8' 11 1/2" x 23' 9 5/8"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">6 Panel Wide</td>
-                  <td className="border px-4 py-2">3.87</td>
+                  <td className="border px-4 py-2">3.3</td>
                   <td className="border px-4 py-2">{`13' 3 3/4" x 15' 10 3/4"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">8 Panel</td>
-                  <td className="border px-4 py-2">5.16</td>
+                  <td className="border px-4 py-2">4.4</td>
                   <td className="border px-4 py-2">{`17' 8" x 15' 10 3/4"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">9 Panel</td>
-                  <td className="border px-4 py-2">5.81</td>
+                  <td className="border px-4 py-2">4.95</td>
                   <td className="border px-4 py-2">{`13' 3 3/4" x 23' 9 5/8"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">10 Panel</td>
-                  <td className="border px-4 py-2">6.45</td>
+                  <td className="border px-4 py-2">5.5</td>
                   <td className="border px-4 py-2">{`22' 1/4" x 15' 10 3/4"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">12 Panel</td>
-                  <td className="border px-4 py-2">7.74</td>
+                  <td className="border px-4 py-2">6.6</td>
                   <td className="border px-4 py-2">{`17' 8" x 23' 9 5/8"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">14 Panel</td>
-                  <td className="border px-4 py-2">9.03</td>
+                  <td className="border px-4 py-2">7.7</td>
                   <td className="border px-4 py-2">{`30' 8 3/4" x 15' 10 3/4"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">15 Panel</td>
-                  <td className="border px-4 py-2">9.68</td>
+                  <td className="border px-4 py-2">8.25</td>
                   <td className="border px-4 py-2">{`22' 1/4" x 23' 9 5/8"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">16 Panel</td>
-                  <td className="border px-4 py-2">10.32</td>
+                  <td className="border px-4 py-2">8.8</td>
                   <td className="border px-4 py-2">{`17' 8" x 31' 8 1/2"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">18 Panel</td>
-                  <td className="border px-4 py-2">11.61</td>
+                  <td className="border px-4 py-2">9.9</td>
                   <td className="border px-4 py-2">{`26' 4 1/2" x 23' 9 5/8"`}</td>
                 </tr>
                 <tr>
                   <td className="border px-4 py-2">20 Panel</td>
-                  <td className="border px-4 py-2">12.90</td>
+                  <td className="border px-4 py-2">11</td>
                   <td className="border px-4 py-2">{`22' 1/4" x 31' 8 1/2"`}</td>
                 </tr>
                 <tr>
