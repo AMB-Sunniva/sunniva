@@ -32,7 +32,7 @@ export default function WhySunnivaPage() {
                             <h1>Family</h1>
                                 <h5>We believe in the importance of creating spaces where families can gather, bond,
                                 and enjoy quality time together.</h5>
-                            <h1>sustainability</h1>
+                            <h1>Sustainability</h1>
                                 <h5>Our commitment to eco-friendly practices ensures that our products
                                 contribute to a greener, more sustainable future.</h5>
                             <h1>Quality</h1>
