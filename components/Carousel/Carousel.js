@@ -7,15 +7,15 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const slides = [
     {
-      imgSrc: '/images/picOne.jpeg',
-      altText: 'Butte 10 Panel',
-      title: 'Butte 10 Panel',
+      imgSrc: '/images/IMG_2609 (2).PNG',
+      altText: 'Butte 9 Panel',
+      title: 'Butte 9 Panel',
       description: 'Traditional style with modern elegance. Check it out now!',
     },
     {
-      imgSrc: '/images/picTen.jpeg',
-      altText: 'Ridge 9 Panel',
-      title: 'Ridge 9 Panel',
+      imgSrc: '/images/IMG_2612 (2).JPG',
+      altText: 'Ridge 12 Panel',
+      title: 'Ridge 12 Panel',
       description: 'Modern esthetics with robust looks. Buy it now!',
     },
   ];
