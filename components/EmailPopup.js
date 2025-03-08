@@ -6,13 +6,8 @@ export default function EmailPopup() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    console.log("Popup Component Mounted!"); // Debugging
-    if (!localStorage.getItem("popupDismissed")) {
-      setTimeout(() => {
-        console.log("Showing Popup"); // Debugging
-        setIsVisible(true);
-      }, 5000);
-    }
+      setTimeout(() => setIsVisible(true), 5000);
+    
   }, []);
 
   const closePopup = () => {
