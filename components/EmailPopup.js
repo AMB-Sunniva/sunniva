@@ -1,36 +1,23 @@
-import { useState, useEffect } from "react";
-import styles from "./EmailPopup.module.css";
+import { useState } from "react";
 
 export default function EmailPopup() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-      setTimeout(() => setIsVisible(true), 5000);
-    
-  }, []);
-
-  const closePopup = () => {
-    console.log("Popup Closed"); // Debugging
-    setIsVisible(false);
-    localStorage.setItem("popupDismissed", "true");
-  };
+  const [isVisible, setIsVisible] = useState(true); // Force visibility
 
   return (
     isVisible && (
-      <div className={styles.popup}>
-        <div className={styles.popupContent}>
-          <span className={styles.closeBtn} onClick={closePopup}>&times;</span>
-          <h2>Subscribe to our Newsletter</h2>
-          <p>Stay updated with our latest news and offers!</p>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button onClick={closePopup}>Subscribe</button>
-        </div>
+      <div style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        background: "white",
+        padding: "20px",
+        border: "1px solid black",
+        zIndex: 1000
+      }}>
+        <h2>Test Pop-up</h2>
+        <p>This is a test pop-up to check rendering.</p>
+        <button onClick={() => setIsVisible(false)}>Close</button>
       </div>
     )
   );
