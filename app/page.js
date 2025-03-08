@@ -1,5 +1,4 @@
 import styles from './page.module.css'
-import EmailPopup from '@/components/EmailPopup';
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
 import Button from '@/components/Button';
