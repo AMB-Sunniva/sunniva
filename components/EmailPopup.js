@@ -1,41 +1,24 @@
 import { useState, useEffect } from "react";
-import styles from "./EmailPopup.module.css"; // Create a separate CSS file for styling
+import styles from "./EmailPopup.module.css";
 
 export default function EmailPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    // Show the pop-up only if it hasn't been dismissed
+    console.log("Popup Component Mounted!"); // Debugging
     if (!localStorage.getItem("popupDismissed")) {
-      setTimeout(() => setIsVisible(true), 5000); // Show after 5 seconds
+      setTimeout(() => {
+        console.log("Showing Popup"); // Debugging
+        setIsVisible(true);
+      }, 5000);
     }
   }, []);
 
   const closePopup = () => {
+    console.log("Popup Closed"); // Debugging
     setIsVisible(false);
     localStorage.setItem("popupDismissed", "true");
-  };
-
-  const subscribe = async () => {
-    if (!email) {
-      alert("Please enter a valid email.");
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-      alert(data.message || "Subscription successful!");
-      closePopup();
-    } catch (error) {
-      alert("Subscription failed. Please try again.");
-    }
   };
 
   return (
@@ -50,9 +33,8 @@ export default function EmailPopup() {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
-          <button onClick={subscribe}>Subscribe</button>
+          <button onClick={closePopup}>Subscribe</button>
         </div>
       </div>
     )
