@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Carousel from '@/components/Carousel/Carousel'
+import EmailPopup from '@/components/EmailPopup';
 
 export default function HomePage() {
   return (
     <div>
       <LandingPage />
+      <EmailPopup/>
       <div className={styles.homePage}>
         <div>
           <hr className={styles.customLine} />
