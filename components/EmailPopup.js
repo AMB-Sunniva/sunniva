@@ -1,4 +1,5 @@
 import { useState } from "react";
+import style from "globals.css"
 
 export default function EmailPopup() {
   const [isVisible, setIsVisible] = useState(true); // Force visibility
