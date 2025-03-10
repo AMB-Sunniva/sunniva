@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from './page.module.css';
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
@@ -5,21 +6,18 @@ import Button from '@/components/Button';
 import Image from 'next/image';
 import Carousel from '@/components/Carousel/Carousel';
 import EmailPopup from "@/components/EmailPopup";
-import { useState } from "react";
 
 export default function HomePage() {
   const [showPopup, setShowPopup] = useState(false);
 
   const handlePageClick = () => {
-    if (!showPopup) {
-      setShowPopup(true);
-    }
+    setShowPopup(true);
   };
 
   return (
     <div onClick={handlePageClick}>
       <LandingPage />
-      {showPopup && <EmailPopup />}
+      {showPopup && <EmailPopup onClose={() => setShowPopup(false)} />}
       <div className={styles.homePage}>
         <div>
           <hr className={styles.customLine} />
@@ -36,7 +34,7 @@ export default function HomePage() {
       </div>
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4 pb-4' />
+            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4 pb-4'/>
         </div>
         <div>
           <div className={styles.benefits}>
@@ -44,24 +42,16 @@ export default function HomePage() {
           </div>
           <div className={styles.aboutSection}>
             <div>
-              <p>
-              <span className='font-bold'>Sustainability:</span> Our solar shade structures harness renewable energy, reducing your carbon footprint and promoting a greener future
-              </p>
+              <p><span className='font-bold'>Sustainability:</span> Our solar shade structures harness renewable energy, reducing your carbon footprint and promoting a greener future</p>
             </div>
             <div>
-              <p>
-                <span className='font-bold'>DIY Friendly:</span> Our kits come with everything you need and are designed for simple, DIY assembly, giving you the freedom to create your perfect outdoor space
-              </p>
+              <p><span className='font-bold'>DIY Friendly:</span> Our kits come with everything you need and are designed for simple, DIY assembly, giving you the freedom to create your perfect outdoor space</p>
             </div>
             <div>
-              <p>
-                <span className='font-bold'>High Quality Materials:</span> Crafted from durable, FSC-certified materials and high-efficiency solar panels, our structures ensure long-lasting performance and reliability
-              </p>
+              <p><span className='font-bold'>High Quality Materials:</span> Crafted from durable, FSC-certified materials and high-efficiency solar panels, our structures ensure long-lasting performance and reliability</p>
             </div>
             <div>
-              <p>
-                <span className='font-bold'>Aesthetic and Functionality:</span> Our designs not only provide energy savings but also add beauty and value to your property, creating enjoyable spaces for family and friends
-              </p>
+              <p><span className='font-bold'>Aesthetic and Functionality:</span> Our designs not only provide energy savings but also add beauty and value to your property, creating enjoyable spaces for family and friends</p>
             </div>
           </div>
           <div className={styles.benefits}>
