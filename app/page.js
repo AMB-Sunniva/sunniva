@@ -22,7 +22,7 @@ export default function HomePage() {
         <div>
           <hr className={styles.customLine} />
           <div className={styles.intro}>
-            <p>Transform your outdoor spaces with our easy-to-install, customizable solar shade structures. Enjoy sustainable living, quality craftsmanship, and beautiful designs that bring families together. Discover the Sunniva Solar difference today.</p>
+            <p>Transform your outdoor spaces with our easy-to-install and customizable solar shade structures. Enjoy sustainable living, quality craftsmanship, and beautiful designs that bring families together. Discover the Sunniva Solar difference today.</p>
             <Link href="/shop">
                 <Button type='bigPrimary'>SHOP NOW</Button>
             </Link>
