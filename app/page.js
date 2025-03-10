@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Carousel from '@/components/Carousel/Carousel';
-import EmailPopup from "@/components/EmailPopup";
+import EmailPopup from "@/components/EmailPopup/EmailPopup";
 
 export default function HomePage() {
   const [showPopup, setShowPopup] = useState(false);
