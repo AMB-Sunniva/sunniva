@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <LandingPage />
-      <EmailPopup />
+      <EmailPopup/>
       <div className={styles.homePage}>
         <div>
           <hr className={styles.customLine} />
