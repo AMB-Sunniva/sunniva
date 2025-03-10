@@ -1,43 +1,39 @@
-// Firebase SDK Initialization Handling
-document.addEventListener('DOMContentLoaded', function() {
-    const loadEl = document.querySelector('#load');
+import { useState } from 'react';
+import styles from './EmailPopup.module.css';
 
-    try {
-        let app = firebase.app();
-        let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-        ].filter(feature => typeof app[feature] === 'function');
+export default function EmailPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState('');
 
-        loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-    } catch (e) {
-        console.error(e);
-        loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-    }
-});
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Email submitted:', email);
+    handleClose();
+  };
 
-// Popup Functionality
-export function openPopup() {
-    document.getElementById("popupContainer").style.display = "flex";
+  return (
+    <div>
+      <button className={styles.openButton} onClick={handleOpen}>Subscribe</button>
+      {isOpen && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupContent}>
+            <h2>Subscribe to Our Newsletter</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button type="submit">Submit</button>
+              <button type="button" onClick={handleClose}>Close</button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
-
-export function closePopup() {
-    document.getElementById("popupContainer").style.display = "none";
-}
-
-// Event Listeners
-document.getElementById("openPopup").addEventListener("click", openPopup);
-document.getElementById("closePopup").addEventListener("click", closePopup);
-
-document.getElementById("popupContainer").addEventListener("click", function (event) {
-    if (event.target === this) {
-        closePopup();
-    }
-});
