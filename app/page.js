@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from './page.module.css';
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
@@ -8,16 +7,11 @@ import Carousel from '@/components/Carousel/Carousel';
 import EmailPopup from "@/components/EmailPopup/EmailPopup";
 
 export default function HomePage() {
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handlePageClick = () => {
-    setShowPopup(true);
-  };
+  
 
   return (
     <div onClick={handlePageClick}>
       <LandingPage />
-      {showPopup && <EmailPopup onClose={() => setShowPopup(false)} />}
       <div className={styles.homePage}>
         <div>
           <hr className={styles.customLine} />
