@@ -1,16 +1,25 @@
-import styles from './page.module.css'
+import styles from './page.module.css';
 import LandingPage from "@/components/LandingPage";
 import Link from 'next/link';
 import Button from '@/components/Button';
 import Image from 'next/image';
-import Carousel from '@/components/Carousel/Carousel'
-import EmailPopup from "@/components/EmailPopup"; 
+import Carousel from '@/components/Carousel/Carousel';
+import EmailPopup from "@/components/EmailPopup";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handlePageClick = () => {
+    if (!showPopup) {
+      setShowPopup(true);
+    }
+  };
+
   return (
-    <div>
+    <div onClick={handlePageClick}>
       <LandingPage />
-      <EmailPopup/>
+      {showPopup && <EmailPopup />}
       <div className={styles.homePage}>
         <div>
           <hr className={styles.customLine} />
@@ -23,11 +32,11 @@ export default function HomePage() {
         </div>
       </div>
       <div className={styles.overview}>
-     <Carousel/>
+        <Carousel />
       </div>
       <div className={styles.homePage}>
         <div className={styles.logo}>
-            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4 pb-4'/>
+            <Image src="/images/blueLogo.png" alt="Sunniva" width={500} height={100} className='md:w-3/4 pb-4' />
         </div>
         <div>
           <div className={styles.benefits}>
@@ -46,11 +55,11 @@ export default function HomePage() {
             </div>
             <div>
               <p>
-                <span className='font-bold'>High Quality Materials:</span> Crafted from durable, FSC-certified materials and high-efficiency solar panels, our structures ensure long-lasting performance and reliability 
+                <span className='font-bold'>High Quality Materials:</span> Crafted from durable, FSC-certified materials and high-efficiency solar panels, our structures ensure long-lasting performance and reliability
               </p>
             </div>
             <div>
-              <p> 
+              <p>
                 <span className='font-bold'>Aesthetic and Functionality:</span> Our designs not only provide energy savings but also add beauty and value to your property, creating enjoyable spaces for family and friends
               </p>
             </div>
