@@ -7,7 +7,7 @@ const EmailPopup = ({ onClose }) => {
       <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>&times;</button>
         <h2>Subscribe to Our Newsletter</h2>
-        <p>Get the latest updates and special offers.</p>
+        <p>The latest updates and special offers.</p>
         <input type="email" placeholder="Enter your email" className={styles.emailInput} />
         <button className={styles.submitButton}>Subscribe</button>
       </div>
